@@ -1,0 +1,935 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Autumn Grayson — UX Designer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #F5F2EC;
+    --bg2: #EDE9E0;
+    --ink: #1A1714;
+    --ink2: #5C5650;
+    --ink3: #9B948C;
+    --accent: #C84B2F;
+    --accent2: #E8A87C;
+    --white: #FDFCF9;
+    --border: rgba(26,23,20,0.12);
+    --serif: 'DM Serif Display', Georgia, serif;
+    --sans: 'DM Sans', system-ui, sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--sans);
+    background: var(--bg);
+    color: var(--ink);
+    font-size: 16px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.25rem 3rem;
+    background: rgba(245,242,236,0.88);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-family: var(--serif);
+    font-size: 1.1rem;
+    color: var(--ink);
+    text-decoration: none;
+    letter-spacing: 0.01em;
+  }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a {
+    font-size: 0.875rem;
+    font-weight: 400;
+    color: var(--ink2);
+    text-decoration: none;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--accent); }
+
+  /* SECTIONS */
+  section { scroll-margin-top: 80px; }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding-top: 80px;
+  }
+  .hero-left {
+    padding: 8rem 3rem 6rem 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .hero-eyebrow {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--accent);
+    font-weight: 500;
+    margin-bottom: 1.5rem;
+  }
+  .hero-name {
+    font-family: var(--serif);
+    font-size: clamp(3rem, 5vw, 4.5rem);
+    line-height: 1.05;
+    color: var(--ink);
+    margin-bottom: 1.5rem;
+  }
+  .hero-name em {
+    font-style: italic;
+    color: var(--accent);
+  }
+  .hero-desc {
+    font-size: 1.1rem;
+    color: var(--ink2);
+    max-width: 420px;
+    line-height: 1.7;
+    margin-bottom: 2.5rem;
+    font-weight: 300;
+  }
+  .hero-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    background: var(--ink);
+    color: var(--white);
+    padding: 0.875rem 1.75rem;
+    border-radius: 2px;
+    text-decoration: none;
+    font-size: 0.875rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    font-weight: 500;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .hero-cta:hover { background: var(--accent); transform: translateY(-1px); }
+  .hero-cta-arrow { font-size: 1rem; }
+  .hero-right {
+    background: var(--bg2);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding: 3rem 3rem 0;
+  }
+  .hero-visual {
+    width: 100%;
+    max-width: 400px;
+    background: var(--white);
+    border-radius: 4px 4px 0 0;
+    border: 1px solid var(--border);
+    border-bottom: none;
+    padding: 2rem;
+    box-shadow: 0 -8px 40px rgba(0,0,0,0.06);
+  }
+  .hero-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 2rem;
+  }
+  .tag {
+    font-size: 0.75rem;
+    padding: 0.35rem 0.875rem;
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    color: var(--ink2);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    background: var(--white);
+  }
+  .tag.filled {
+    background: var(--ink);
+    color: var(--white);
+    border-color: var(--ink);
+  }
+  .hero-stat-row {
+    display: flex;
+    gap: 2rem;
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border);
+  }
+  .hero-stat-num {
+    font-family: var(--serif);
+    font-size: 1.75rem;
+    color: var(--ink);
+    display: block;
+  }
+  .hero-stat-label {
+    font-size: 0.75rem;
+    color: var(--ink3);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  /* DIVIDER */
+  .section-divider {
+    width: 100%;
+    height: 1px;
+    background: var(--border);
+    margin: 0 3rem;
+    width: calc(100% - 6rem);
+  }
+
+  /* WORK */
+  .work-section {
+    padding: 8rem 3rem;
+  }
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 4rem;
+  }
+  .section-label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--ink3);
+    font-weight: 500;
+  }
+  .section-title {
+    font-family: var(--serif);
+    font-size: 2.5rem;
+    line-height: 1.1;
+    max-width: 400px;
+  }
+  .case-study-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+  }
+  .case-card {
+    background: var(--white);
+    padding: 3rem;
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.25s;
+    border: 1px solid var(--border);
+  }
+  .case-card:hover { background: var(--bg2); }
+  .case-card:hover .case-arrow { transform: translate(4px, -4px); }
+  .case-number {
+    font-size: 0.75rem;
+    color: var(--ink3);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+  }
+  .case-company {
+    font-family: var(--serif);
+    font-size: 1.75rem;
+    line-height: 1.1;
+    margin-bottom: 0.75rem;
+    color: var(--ink);
+  }
+  .case-desc {
+    font-size: 0.9375rem;
+    color: var(--ink2);
+    line-height: 1.6;
+    margin-bottom: 2rem;
+    font-weight: 300;
+  }
+  .case-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 2.5rem;
+  }
+  .case-arrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.8125rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    font-weight: 500;
+    transition: transform 0.2s;
+  }
+  .case-impact {
+    background: var(--bg);
+    border-radius: 2px;
+    padding: 1.25rem 1.5rem;
+    margin-top: auto;
+  }
+  .case-impact-label {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--ink3);
+    margin-bottom: 0.25rem;
+  }
+  .case-impact-value {
+    font-size: 0.9375rem;
+    color: var(--ink2);
+    font-weight: 300;
+  }
+
+  /* CASE STUDY DETAIL */
+  .case-detail {
+    display: none;
+    background: var(--white);
+    border: 1px solid var(--border);
+    margin-top: 2px;
+    padding: 4rem 3rem;
+    grid-column: 1 / -1;
+    position: relative;
+  }
+  .case-detail.open { display: grid; grid-template-columns: 1fr 2fr; gap: 4rem; }
+  .detail-close {
+    position: absolute;
+    top: 2rem; right: 2rem;
+    background: none;
+    border: 1px solid var(--border);
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1.1rem;
+    color: var(--ink2);
+    display: flex; align-items: center; justify-content: center;
+    transition: background 0.15s;
+  }
+  .detail-close:hover { background: var(--bg); }
+  .detail-sidebar h3 {
+    font-family: var(--serif);
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+  .detail-sidebar p {
+    font-size: 0.875rem;
+    color: var(--ink2);
+    font-weight: 300;
+    margin-bottom: 2rem;
+    line-height: 1.6;
+  }
+  .detail-meta-item { margin-bottom: 1.25rem; }
+  .detail-meta-label {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--ink3);
+    margin-bottom: 0.25rem;
+  }
+  .detail-meta-val {
+    font-size: 0.9375rem;
+    color: var(--ink);
+  }
+  .detail-body h4 {
+    font-family: var(--serif);
+    font-size: 1.1rem;
+    margin-bottom: 0.75rem;
+    margin-top: 2rem;
+    color: var(--ink);
+  }
+  .detail-body h4:first-child { margin-top: 0; }
+  .detail-body p {
+    font-size: 0.9375rem;
+    color: var(--ink2);
+    line-height: 1.75;
+    font-weight: 300;
+    margin-bottom: 1rem;
+  }
+  .detail-body ul {
+    margin: 0.5rem 0 1rem 1.25rem;
+    font-size: 0.9375rem;
+    color: var(--ink2);
+    font-weight: 300;
+    line-height: 1.75;
+  }
+  .detail-divider {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 2rem 0;
+  }
+  .outcome-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin: 1.5rem 0;
+  }
+  .outcome-card {
+    background: var(--bg);
+    padding: 1.25rem;
+    border-radius: 2px;
+  }
+  .outcome-num {
+    font-family: var(--serif);
+    font-size: 1.5rem;
+    color: var(--accent);
+    display: block;
+    margin-bottom: 0.25rem;
+  }
+  .outcome-desc {
+    font-size: 0.8rem;
+    color: var(--ink2);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+  .process-steps {
+    display: flex;
+    gap: 0;
+    margin: 1.5rem 0;
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  .process-step {
+    flex: 1;
+    padding: 1rem;
+    border-right: 1px solid var(--border);
+    text-align: center;
+  }
+  .process-step:last-child { border-right: none; }
+  .process-step-num {
+    font-size: 0.7rem;
+    color: var(--ink3);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+  .process-step-name {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--ink);
+    margin-top: 0.25rem;
+  }
+
+  /* ABOUT */
+  .about-section {
+    padding: 8rem 3rem;
+    background: var(--ink);
+    color: var(--white);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+  }
+  .about-section .section-label { color: var(--accent2); }
+  .about-title {
+    font-family: var(--serif);
+    font-size: 2.5rem;
+    line-height: 1.1;
+    margin-top: 1rem;
+    color: var(--white);
+  }
+  .about-title em { font-style: italic; color: var(--accent2); }
+  .about-body {
+    padding-top: 1.5rem;
+  }
+  .about-body p {
+    font-size: 1rem;
+    color: rgba(255,255,255,0.65);
+    line-height: 1.8;
+    font-weight: 300;
+    margin-bottom: 1.25rem;
+  }
+  .about-skills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 2rem;
+  }
+  .about-skill {
+    font-size: 0.75rem;
+    padding: 0.35rem 0.875rem;
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 2px;
+    color: rgba(255,255,255,0.6);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+  .about-links {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    border-top: 1px solid rgba(255,255,255,0.12);
+    padding-top: 1.5rem;
+    margin-top: 2rem;
+  }
+  .about-link-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-decoration: none;
+    color: rgba(255,255,255,0.5);
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    transition: color 0.2s;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+  .about-link-item:last-child { border-bottom: none; padding-bottom: 0; }
+  .about-link-item:hover { color: var(--white); }
+  .about-link-item span { font-size: 1rem; }
+
+  /* CONTACT */
+  .contact-section {
+    padding: 8rem 3rem;
+    text-align: center;
+    background: var(--bg2);
+  }
+  .contact-section .section-label { color: var(--ink3); margin-bottom: 1rem; }
+  .contact-big {
+    font-family: var(--serif);
+    font-size: clamp(2.5rem, 6vw, 5rem);
+    line-height: 1.05;
+    margin-bottom: 2rem;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .contact-big em { font-style: italic; color: var(--accent); }
+  .contact-desc {
+    font-size: 1rem;
+    color: var(--ink2);
+    font-weight: 300;
+    margin-bottom: 3rem;
+  }
+  .contact-email {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-family: var(--serif);
+    font-size: 1.25rem;
+    color: var(--ink);
+    text-decoration: none;
+    border-bottom: 1px solid var(--accent);
+    padding-bottom: 0.25rem;
+    transition: color 0.2s;
+  }
+  .contact-email:hover { color: var(--accent); }
+
+  /* FOOTER */
+  footer {
+    padding: 2rem 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid var(--border);
+    font-size: 0.8125rem;
+    color: var(--ink3);
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .fade-up {
+    animation: fadeUp 0.7s ease forwards;
+  }
+  .fade-up-2 { animation-delay: 0.15s; opacity: 0; animation-fill-mode: forwards; }
+  .fade-up-3 { animation-delay: 0.3s; opacity: 0; animation-fill-mode: forwards; }
+  .fade-up-4 { animation-delay: 0.45s; opacity: 0; animation-fill-mode: forwards; }
+
+  @media (max-width: 900px) {
+    nav { padding: 1rem 1.5rem; }
+    .hero { grid-template-columns: 1fr; }
+    .hero-right { display: none; }
+    .hero-left { padding: 6rem 1.5rem 4rem; }
+    .work-section { padding: 5rem 1.5rem; }
+    .case-study-grid { grid-template-columns: 1fr; }
+    .case-detail.open { grid-template-columns: 1fr; }
+    .about-section { grid-template-columns: 1fr; padding: 5rem 1.5rem; gap: 3rem; }
+    .contact-section { padding: 5rem 1.5rem; }
+    footer { padding: 2rem 1.5rem; flex-direction: column; gap: 1rem; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">Autumn Grayson</a>
+  <ul class="nav-links">
+    <li><a href="#work">Work</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-left">
+    <p class="hero-eyebrow fade-up">UX & Product Designer — Seattle, WA</p>
+    <h1 class="hero-name fade-up fade-up-2">
+      Designing systems<br>that <em>reduce</em><br>friction.
+    </h1>
+    <p class="hero-desc fade-up fade-up-3">
+      I'm Autumn — a product designer who turns messy, ambiguous problems into clear, usable experiences. Previously at Meta. Focused on information architecture, design systems, and research-led product thinking.
+    </p>
+    <a href="#work" class="hero-cta fade-up fade-up-4">
+      View my work <span class="hero-cta-arrow">↓</span>
+    </a>
+  </div>
+  <div class="hero-right">
+    <div class="hero-visual">
+      <p style="font-size:0.75rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--ink3);margin-bottom:1rem;">Currently available for</p>
+      <div class="hero-tags">
+        <span class="tag filled">Full-time roles</span>
+        <span class="tag">Freelance</span>
+        <span class="tag">Consulting</span>
+      </div>
+      <div class="hero-stat-row">
+        <div>
+          <span class="hero-stat-num">2+</span>
+          <span class="hero-stat-label">Years exp.</span>
+        </div>
+        <div>
+          <span class="hero-stat-num">2</span>
+          <span class="hero-stat-label">Shipped projects</span>
+        </div>
+        <div>
+          <span class="hero-stat-num">1</span>
+          <span class="hero-stat-label">Big tech co.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WORK -->
+<section class="work-section" id="work">
+  <div class="section-header">
+    <span class="section-label">Selected Work</span>
+    <h2 class="section-title">Two projects. Both real. Both shipped.</h2>
+  </div>
+
+  <div class="case-study-grid">
+    <!-- CARD 1: META -->
+    <div class="case-card" onclick="toggleCase('meta')">
+      <p class="case-number">01 — 2022</p>
+      <h3 class="case-company">Meta — Internal Search<br>Design System</h3>
+      <p class="case-desc">Standardizing how Meta employees design and build pages for the company's internal search engine — reducing engineering overhead and improving readability across thousands of internal sites.</p>
+      <div class="case-meta">
+        <span class="tag">5 weeks</span>
+        <span class="tag">Product Design</span>
+        <span class="tag">Design Systems</span>
+        <span class="tag">Figma</span>
+      </div>
+      <div class="case-impact">
+        <p class="case-impact-label">Impact</p>
+        <p class="case-impact-value">Template adopted across Meta's internal search engine — affecting thousands of employee-facing sites</p>
+      </div>
+      <br>
+      <span class="case-arrow">Read case study →</span>
+    </div>
+
+    <!-- CARD 2: BVCC -->
+    <div class="case-card" onclick="toggleCase('bvcc')">
+      <p class="case-number">02 — 2022</p>
+      <h3 class="case-company">BVCC — College Mental<br>Health App</h3>
+      <p class="case-desc">Identifying the connection between stress, routine, and academic performance in college students — then designing a community-based mobile app to address mental health through peer support.</p>
+      <div class="case-meta">
+        <span class="tag">8 weeks</span>
+        <span class="tag">UX Research</span>
+        <span class="tag">Mobile Design</span>
+        <span class="tag">Card Sorting</span>
+      </div>
+      <div class="case-impact">
+        <p class="case-impact-label">Impact</p>
+        <p class="case-impact-value">Research-backed MVP; user interviews validated core problem before first pixel was designed</p>
+      </div>
+      <br>
+      <span class="case-arrow">Read case study →</span>
+    </div>
+
+    <!-- META DETAIL -->
+    <div class="case-detail" id="detail-meta">
+      <button class="detail-close" onclick="toggleCase('meta')">✕</button>
+      <div class="detail-sidebar">
+        <h3>Meta Internship</h3>
+        <p>Internal search engine design system for Meta employees. NDA restricts visual assets, but the thinking is all here.</p>
+        <div class="detail-meta-item">
+          <p class="detail-meta-label">My Role</p>
+          <p class="detail-meta-val">Product Designer (Intern)</p>
+        </div>
+        <div class="detail-meta-item">
+          <p class="detail-meta-label">Team</p>
+          <p class="detail-meta-val">Tarjni (User Researcher)</p>
+        </div>
+        <div class="detail-meta-item">
+          <p class="detail-meta-label">Duration</p>
+          <p class="detail-meta-val">5 weeks</p>
+        </div>
+        <div class="detail-meta-item">
+          <p class="detail-meta-label">Tools</p>
+          <p class="detail-meta-val">Figma, Meta Design System</p>
+        </div>
+      </div>
+      <div class="detail-body">
+        <h4>The problem</h4>
+        <p>Meta employees designing and programming pages for the company's internal search engine were running into the same problems repeatedly: inconsistent layouts, reliance on non-standard HTML and inline CSS, and high cognitive load when reading dense, unstructured pages. There was no shared template — everyone was reinventing the wheel, badly.</p>
+        <p>My task was to define what a standardized site template should look like: one that could scale across the breadth of existing internal sites while reducing the technical overhead on engineers.</p>
+
+        <hr class="detail-divider">
+
+        <h4>Research: auditing 46 live sites</h4>
+        <p>Before sketching anything, my researcher Tarjni and I catalogued 46 existing Meta internal search engine sites. We sorted patterns into two buckets: what was working (and worth keeping) and what was actively hurting usability.</p>
+        <p><strong>Patterns worth keeping:</strong></p>
+        <ul>
+          <li>Modern visual design — hero imagery, clean hierarchy</li>
+          <li>Team identity elements — logos and branding that made sites feel owned</li>
+          <li>Componentized layouts — cards and accordions that scaled well</li>
+        </ul>
+        <p><strong>Patterns to eliminate:</strong></p>
+        <ul>
+          <li>Walls of unbroken text with no visual breathing room</li>
+          <li>Null data states — broken layouts when content was missing</li>
+          <li>Inconsistent hierarchy — unclear what was a heading vs. body vs. action</li>
+        </ul>
+
+        <hr class="detail-divider">
+
+        <h4>Design principles I committed to</h4>
+        <div class="process-steps">
+          <div class="process-step">
+            <p class="process-step-num">01</p>
+            <p class="process-step-name">Company guidelines first</p>
+          </div>
+          <div class="process-step">
+            <p class="process-step-num">02</p>
+            <p class="process-step-name">Component-driven</p>
+          </div>
+          <div class="process-step">
+            <p class="process-step-num">03</p>
+            <p class="process-step-name">Accessible by default</p>
+          </div>
+          <div class="process-step">
+            <p class="process-step-num">04</p>
+            <p class="process-step-name">Cognitive load reduction</p>
+          </div>
+        </div>
+
+        <hr class="detail-divider">
+
+        <h4>The hardest design challenge: grid systems</h4>
+        <p>The biggest friction point in the project wasn't visual — it was structural. Applying Meta's standard column grid in a way that would genuinely work across the full range of existing sites required multiple iterations. Most sites had wildly different content volumes. The grid needed to be flexible enough to handle both a dense documentation page and a sparse landing page without breaking.</p>
+        <p>I worked through multiple grid variations in Figma, testing each against a set of representative existing sites. The final approach used a modified 12-column system with defined responsive breakpoints that allowed subgrids at the section level — meaning individual page sections could adapt their density without disrupting the overall layout.</p>
+
+        <hr class="detail-divider">
+
+        <h4>Outcome</h4>
+        <p>The final template shipped internally during my internship and was adopted as the standard for Meta's internal search engine sites. The template covered a landing page pattern and multiple sub-page variants, all built on cards, accordions, and Meta's existing component library — reducing the need for custom HTML or inline CSS workarounds.</p>
+        <div class="outcome-grid">
+          <div class="outcome-card">
+            <span class="outcome-num">46</span>
+            <span class="outcome-desc">Sites audited during research</span>
+          </div>
+          <div class="outcome-card">
+            <span class="outcome-num">1000s</span>
+            <span class="outcome-desc">Employees affected by the template</span>
+          </div>
+          <div class="outcome-card">
+            <span class="outcome-num">5 wks</span>
+            <span class="outcome-desc">From brief to shipped template</span>
+          </div>
+        </div>
+
+        <hr class="detail-divider">
+
+        <h4>What I'd do differently</h4>
+        <p>Five weeks was tight. I wish I'd had time to run structured usability testing with employees who would actually use the template — not just collect feedback informally. I also leaned heavily on the audit data to make decisions, which was efficient but meant some choices were inferred rather than validated. Given more time, I would have run at least two rounds of concept testing before finalizing the grid system.</p>
+      </div>
+    </div>
+
+    <!-- BVCC DETAIL -->
+    <div class="case-detail" id="detail-bvcc">
+      <button class="detail-close" onclick="toggleCase('bvcc')">✕</button>
+      <div class="detail-sidebar">
+        <h3>BVCC Mental Health App</h3>
+        <p>An 8-week research and design sprint to identify college students' core challenges and design a community-based solution.</p>
+        <div class="detail-meta-item">
+          <p class="detail-meta-label">My Role</p>
+          <p class="detail-meta-val">UX Researcher + Designer</p>
+        </div>
+        <div class="detail-meta-item">
+          <p class="detail-meta-label">Methods</p>
+          <p class="detail-meta-val">User interviews, card sorting</p>
+        </div>
+        <div class="detail-meta-item">
+          <p class="detail-meta-label">Duration</p>
+          <p class="detail-meta-val">8 weeks</p>
+        </div>
+        <div class="detail-meta-item">
+          <p class="detail-meta-label">Tools</p>
+          <p class="detail-meta-val">Figma, Sketch</p>
+        </div>
+      </div>
+      <div class="detail-body">
+        <h4>The brief</h4>
+        <p>The challenge was deliberately open-ended: "Identify a universal conflict for college students and create a digital solution that facilitates growth." No predefined problem, no obvious starting point. The entire project direction had to emerge from research.</p>
+
+        <hr class="detail-divider">
+
+        <h4>Starting with questions, not assumptions</h4>
+        <p>Before interviewing anyone, I wrote out five research questions to keep the work from drifting into generic territory:</p>
+        <ul>
+          <li>How does mental health impact academic performance?</li>
+          <li>How can stress be alleviated to improve "external performance"?</li>
+          <li>What motivates the average college student?</li>
+          <li>Which self-improvement tools (apps, planners) are most popular — and why?</li>
+          <li>Where do students struggle internally, beyond just academics?</li>
+        </ul>
+
+        <hr class="detail-divider">
+
+        <h4>What 4 interviews revealed</h4>
+        <p>I interviewed four college students with one-on-one sessions. Some key quotes that shaped the direction:</p>
+        <ul>
+          <li>"I am still trying to figure out my system" — the absence of any routine was the pain, not a broken routine</li>
+          <li>"The distracting college environment" — the problem isn't self-discipline, it's context</li>
+          <li>"Journaling, trying not to overthink things" — students had instincts, they just needed structure</li>
+          <li>"A lot less stressed and a lot more productive" — the definition of success was remarkably consistent</li>
+        </ul>
+        <p>The through-line: stress is the umbrella. Students were struggling not just with time management but with the sudden absence of external structure that school had always provided. College was the first time they had to govern themselves — and most didn't have the tools.</p>
+
+        <hr class="detail-divider">
+
+        <h4>Problem statement</h4>
+        <p>College students face challenges with time management, balancing responsibilities, and creating routines they can sustain — because stress undermines their ability to self-regulate, and the college environment actively works against structure-building.</p>
+
+        <hr class="detail-divider">
+
+        <h4>Design direction: community over gamification</h4>
+        <p>Most mental health apps lean on individual tracking and gamification. My research pointed in a different direction: students wanted connection. Accountability from peers, not from an app's streak counter. The solution became a community forum where students could share routines, get support, and reduce the isolation that amplifies stress.</p>
+        <p>Key design principles I applied:</p>
+        <div class="process-steps">
+          <div class="process-step">
+            <p class="process-step-num">01</p>
+            <p class="process-step-name">Low-friction onboarding</p>
+          </div>
+          <div class="process-step">
+            <p class="process-step-num">02</p>
+            <p class="process-step-name">Community-first</p>
+          </div>
+          <div class="process-step">
+            <p class="process-step-num">03</p>
+            <p class="process-step-name">Minimal cognitive load</p>
+          </div>
+          <div class="process-step">
+            <p class="process-step-num">04</p>
+            <p class="process-step-name">Safe, non-judgmental tone</p>
+          </div>
+        </div>
+
+        <hr class="detail-divider">
+
+        <h4>Outcome & honest reflection</h4>
+        <p>The project delivered a high-fidelity mobile prototype covering onboarding, community forum, and routine-tracking features. The research foundation was strong enough that every design decision traced back to a specific interview insight.</p>
+        <p>What I'd do with more time: concept testing. I designed to the evidence I had, but I didn't close the loop with validation from users. In hindsight, even informal guerrilla testing — showing the prototype to 3–4 students and watching them use it — would have surfaced usability issues I couldn't see because I was too close to the work. That's the step I'd build in from day one on any future project.</p>
+        <div class="outcome-grid">
+          <div class="outcome-card">
+            <span class="outcome-num">4</span>
+            <span class="outcome-desc">Students interviewed</span>
+          </div>
+          <div class="outcome-card">
+            <span class="outcome-num">5</span>
+            <span class="outcome-desc">Research questions defined upfront</span>
+          </div>
+          <div class="outcome-card">
+            <span class="outcome-num">8 wks</span>
+            <span class="outcome-desc">Research to hi-fi prototype</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about-section" id="about">
+  <div>
+    <p class="section-label">About me</p>
+    <h2 class="about-title">I design for the<br>humans <em>behind</em><br>the screen.</h2>
+  </div>
+  <div class="about-body">
+    <p>I'm Autumn Grayson, a UX and product designer with experience at Meta and a background in both research and interface design. I specialize in information architecture, design systems, and research-led product thinking — especially in complex, ambiguous problem spaces where the right question matters more than the first solution.</p>
+    <p>My work tends to sit at the intersection of clarity and usability: reducing cognitive load, improving navigability, and making sure what gets built actually reflects what users need. I'm equally comfortable running user interviews on day one and iterating on Figma screens on day twenty.</p>
+    <p>Based in Seattle. Open to full-time product design or UX roles — particularly in tech, healthcare, or anything with real information complexity.</p>
+    <div class="about-skills">
+      <span class="about-skill">UX Research</span>
+      <span class="about-skill">Interaction Design</span>
+      <span class="about-skill">Design Systems</span>
+      <span class="about-skill">Information Architecture</span>
+      <span class="about-skill">Figma</span>
+      <span class="about-skill">Prototyping</span>
+      <span class="about-skill">Usability Testing</span>
+      <span class="about-skill">Card Sorting</span>
+    </div>
+    <div class="about-links">
+      <a href="#" class="about-link-item">Resume <span>↗</span></a>
+      <a href="https://linkedin.com" class="about-link-item">LinkedIn <span>↗</span></a>
+      <a href="#contact" class="about-link-item">Get in touch <span>↓</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact-section" id="contact">
+  <p class="section-label">Contact</p>
+  <h2 class="contact-big">Let's make something<br><em>worth using.</em></h2>
+  <p class="contact-desc">Open to full-time roles, freelance projects, and conversations about interesting design problems.</p>
+  <a href="mailto:hello@autumngrayson.com" class="contact-email">
+    hello@autumngrayson.com ↗
+  </a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span>© 2025 Autumn Grayson</span>
+  <span>UX & Product Designer — Seattle, WA</span>
+</footer>
+
+<script>
+function toggleCase(id) {
+  const metaDetail = document.getElementById('detail-meta');
+  const bvccDetail = document.getElementById('detail-bvcc');
+
+  if (id === 'meta') {
+    const isOpen = metaDetail.classList.contains('open');
+    metaDetail.classList.toggle('open', !isOpen);
+    bvccDetail.classList.remove('open');
+    if (!isOpen) {
+      setTimeout(() => metaDetail.scrollIntoView({ behavior: 'smooth', block: 'start' }), 50);
+    }
+  } else {
+    const isOpen = bvccDetail.classList.contains('open');
+    bvccDetail.classList.toggle('open', !isOpen);
+    metaDetail.classList.remove('open');
+    if (!isOpen) {
+      setTimeout(() => bvccDetail.scrollIntoView({ behavior: 'smooth', block: 'start' }), 50);
+    }
+  }
+}
+</script>
+</body>
+</html>

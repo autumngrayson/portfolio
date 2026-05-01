@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Meta Internship — Autumn Grayson</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #F5F2EC;
+    --bg2: #EDE9E0;
+    --ink: #1A1714;
+    --ink2: #5C5650;
+    --ink3: #9B948C;
+    --accent: #C84B2F;
+    --accent2: #E8A87C;
+    --white: #FDFCF9;
+    --border: rgba(26,23,20,0.12);
+    --serif: 'DM Serif Display', Georgia, serif;
+    --sans: 'DM Sans', system-ui, sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: var(--sans);
+    background: var(--bg);
+    color: var(--ink);
+    font-size: 16px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.25rem 3rem;
+    background: rgba(245,242,236,0.88);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-family: var(--serif);
+    font-size: 1.1rem;
+    color: var(--ink);
+    text-decoration: none;
+  }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; align-items: center; }
+  .nav-links a {
+    font-size: 0.875rem;
+    font-weight: 400;
+    color: var(--ink2);
+    text-decoration: none;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--accent); }
+  .nav-back {
+    font-size: 0.875rem;
+    color: var(--ink3);
+    text-decoration: none;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: color 0.2s;
+  }
+  .nav-back:hover { color: var(--ink); }
+
+  /* HERO */
+  .project-hero {
+    padding: 10rem 3rem 5rem;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .project-eyebrow {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--accent);
+    font-weight: 500;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  .project-eyebrow::after {
+    content: '';
+    display: block;
+    height: 1px;
+    width: 40px;
+    background: var(--accent);
+    opacity: 0.4;
+  }
+  .project-title {
+    font-family: var(--serif);
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    line-height: 1.05;
+    max-width: 800px;
+    margin-bottom: 2rem;
+  }
+  .project-title em { font-style: italic; color: var(--accent); }
+  .project-subtitle {
+    font-size: 1.125rem;
+    color: var(--ink2);
+    font-weight: 300;
+    max-width: 600px;
+    line-height: 1.7;
+    margin-bottom: 3rem;
+  }
+
+  /* META ROW */
+  .meta-row {
+    display: flex;
+    gap: 3rem;
+    padding: 2rem 0;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    flex-wrap: wrap;
+  }
+  .meta-item {}
+  .meta-label {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--ink3);
+    margin-bottom: 0.3rem;
+  }
+  .meta-val {
+    font-size: 0.9375rem;
+    color: var(--ink);
+    font-weight: 400;
+  }
+
+  /* LAYOUT */
+  .project-body {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 3rem 8rem;
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    gap: 5rem;
+    align-items: start;
+  }
+
+  /* STICKY SIDEBAR */
+  .sidebar {
+    position: sticky;
+    top: 100px;
+  }
+  .sidebar-nav {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    border-left: 1px solid var(--border);
+  }
+  .sidebar-nav li a {
+    display: block;
+    padding: 0.6rem 1.25rem;
+    font-size: 0.8125rem;
+    color: var(--ink3);
+    text-decoration: none;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    transition: color 0.2s, border-color 0.2s;
+    border-left: 2px solid transparent;
+    margin-left: -1px;
+  }
+  .sidebar-nav li a:hover,
+  .sidebar-nav li a.active {
+    color: var(--accent);
+    border-left-color: var(--accent);
+  }
+  .sidebar-nda {
+    margin-top: 2rem;
+    padding: 1rem 1.25rem;
+    background: var(--bg2);
+    border-radius: 2px;
+    font-size: 0.8rem;
+    color: var(--ink3);
+    line-height: 1.5;
+  }
+  .sidebar-nda strong { color: var(--ink2); display: block; margin-bottom: 0.3rem; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.06em; }
+
+  /* ARTICLE CONTENT */
+  .article { padding-top: 4rem; }
+
+  .cs-section {
+    margin-bottom: 5rem;
+    scroll-margin-top: 100px;
+  }
+  .cs-section-label {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--ink3);
+    margin-bottom: 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  .cs-section-label::before {
+    content: attr(data-num);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: var(--bg2);
+    font-size: 0.65rem;
+    color: var(--ink3);
+    flex-shrink: 0;
+  }
+  .cs-section h2 {
+    font-family: var(--serif);
+    font-size: 1.875rem;
+    line-height: 1.15;
+    margin-bottom: 1.25rem;
+    color: var(--ink);
+  }
+  .cs-section p {
+    font-size: 1rem;
+    color: var(--ink2);
+    font-weight: 300;
+    line-height: 1.8;
+    margin-bottom: 1.25rem;
+    max-width: 640px;
+  }
+  .cs-section ul, .cs-section ol {
+    margin: 0.5rem 0 1.25rem 1.5rem;
+    max-width: 600px;
+  }
+  .cs-section li {
+    font-size: 1rem;
+    color: var(--ink2);
+    font-weight: 300;
+    line-height: 1.75;
+    margin-bottom: 0.35rem;
+  }
+  .cs-section strong { color: var(--ink); font-weight: 500; }
+
+  /* CALLOUT BLOCK */
+  .callout {
+    border-left: 3px solid var(--accent);
+    padding: 1.25rem 1.5rem;
+    background: var(--white);
+    border-radius: 0 2px 2px 0;
+    margin: 2rem 0;
+    max-width: 620px;
+  }
+  .callout p {
+    font-family: var(--serif);
+    font-size: 1.15rem;
+    font-style: italic;
+    color: var(--ink);
+    line-height: 1.6;
+    margin: 0;
+  }
+  .callout cite {
+    display: block;
+    margin-top: 0.75rem;
+    font-family: var(--sans);
+    font-size: 0.8rem;
+    font-style: normal;
+    color: var(--ink3);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  /* PATTERN GRID */
+  .pattern-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin: 1.5rem 0;
+    max-width: 620px;
+  }
+  .pattern-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    padding: 1.25rem 1.5rem;
+  }
+  .pattern-card.bad { border-top: 2px solid #D85A30; }
+  .pattern-card.good { border-top: 2px solid #3B6D11; }
+  .pattern-card-label {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.75rem;
+  }
+  .pattern-card.bad .pattern-card-label { color: #D85A30; }
+  .pattern-card.good .pattern-card-label { color: #3B6D11; }
+  .pattern-card ul {
+    margin: 0;
+    padding-left: 1rem;
+  }
+  .pattern-card li {
+    font-size: 0.875rem;
+    color: var(--ink2);
+    font-weight: 300;
+    line-height: 1.65;
+    margin-bottom: 0.25rem;
+  }
+
+  /* PROCESS STRIP */
+  .process-strip {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    overflow: hidden;
+    margin: 1.5rem 0;
+    max-width: 620px;
+  }
+  .process-step {
+    padding: 1.25rem 1rem;
+    border-right: 1px solid var(--border);
+    text-align: center;
+  }
+  .process-step:last-child { border-right: none; }
+  .ps-num {
+    font-size: 0.65rem;
+    color: var(--ink3);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.35rem;
+  }
+  .ps-name {
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--ink);
+    line-height: 1.3;
+  }
+
+  /* STATS */
+  .stat-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin: 2rem 0;
+    max-width: 620px;
+  }
+  .stat-card {
+    background: var(--ink);
+    color: var(--white);
+    padding: 1.5rem 1.25rem;
+    border-radius: 2px;
+  }
+  .stat-num {
+    font-family: var(--serif);
+    font-size: 2rem;
+    display: block;
+    color: var(--accent2);
+    margin-bottom: 0.35rem;
+  }
+  .stat-desc {
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.55);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    line-height: 1.4;
+  }
+
+  /* PLACEHOLDER IMAGE */
+  .img-placeholder {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    aspect-ratio: 16/9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 2rem 0;
+    max-width: 720px;
+    position: relative;
+    overflow: hidden;
+  }
+  .img-placeholder::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 20px,
+      rgba(26,23,20,0.03) 20px,
+      rgba(26,23,20,0.03) 21px
+    );
+  }
+  .img-placeholder-label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--ink3);
+    text-align: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* NEXT PROJECT */
+  .next-project {
+    background: var(--ink);
+    padding: 5rem 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    text-decoration: none;
+    color: var(--white);
+    transition: background 0.25s;
+  }
+  .next-project:hover { background: var(--accent); }
+  .next-label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: rgba(255,255,255,0.5);
+    margin-bottom: 0.5rem;
+  }
+  .next-title {
+    font-family: var(--serif);
+    font-size: 2rem;
+    color: var(--white);
+  }
+  .next-arrow { font-size: 2rem; color: rgba(255,255,255,0.4); transition: transform 0.2s; }
+  .next-project:hover .next-arrow { transform: translateX(8px); }
+
+  /* FOOTER */
+  footer {
+    padding: 2rem 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid var(--border);
+    font-size: 0.8125rem;
+    color: var(--ink3);
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .fade-up { animation: fadeUp 0.6s ease forwards; }
+  .d1 { animation-delay: 0.1s; opacity: 0; animation-fill-mode: forwards; }
+  .d2 { animation-delay: 0.2s; opacity: 0; animation-fill-mode: forwards; }
+  .d3 { animation-delay: 0.35s; opacity: 0; animation-fill-mode: forwards; }
+
+  @media (max-width: 900px) {
+    nav { padding: 1rem 1.5rem; }
+    .project-hero { padding: 8rem 1.5rem 3rem; }
+    .project-body { grid-template-columns: 1fr; padding: 0 1.5rem 5rem; gap: 0; }
+    .sidebar { position: static; display: none; }
+    .article { padding-top: 2rem; }
+    .pattern-grid { grid-template-columns: 1fr; }
+    .process-strip { grid-template-columns: repeat(2, 1fr); }
+    .stat-row { grid-template-columns: 1fr 1fr; }
+    .next-project { padding: 3rem 1.5rem; }
+    footer { padding: 2rem 1.5rem; flex-direction: column; gap: 1rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="autumn-portfolio.html" class="nav-back">← Back to work</a>
+  <ul class="nav-links">
+    <li><a href="autumn-portfolio.html#work">Work</a></li>
+    <li><a href="autumn-portfolio.html#about">About</a></li>
+    <li><a href="autumn-portfolio.html#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="project-hero">
+  <p class="project-eyebrow fade-up">Meta · 2022 · Product Design</p>
+  <h1 class="project-title fade-up d1">
+    Designing a standard<br>template for Meta's <em>internal</em><br>search engine
+  </h1>
+  <p class="project-subtitle fade-up d2">
+    How I audited 46 live internal sites, identified what was and wasn't working, and built a scalable page template that reduced engineering overhead across thousands of employee-facing pages.
+  </p>
+  <div class="meta-row fade-up d3">
+    <div class="meta-item">
+      <p class="meta-label">Role</p>
+      <p class="meta-val">Product Designer (Intern)</p>
+    </div>
+    <div class="meta-item">
+      <p class="meta-label">Team</p>
+      <p class="meta-val">Tarjni (User Researcher)</p>
+    </div>
+    <div class="meta-item">
+      <p class="meta-label">Duration</p>
+      <p class="meta-val">5 weeks</p>
+    </div>
+    <div class="meta-item">
+      <p class="meta-label">Tools</p>
+      <p class="meta-val">Figma, Meta Design System</p>
+    </div>
+    <div class="meta-item">
+      <p class="meta-label">Status</p>
+      <p class="meta-val">Shipped internally</p>
+    </div>
+  </div>
+</div>
+
+<!-- BODY -->
+<div class="project-body">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <ul class="sidebar-nav">
+      <li><a href="#problem">The Problem</a></li>
+      <li><a href="#research">Research</a></li>
+      <li><a href="#principles">Design Principles</a></li>
+      <li><a href="#challenge">Key Challenge</a></li>
+      <li><a href="#iterations">Iterations</a></li>
+      <li><a href="#outcome">Outcome</a></li>
+      <li><a href="#reflection">Reflection</a></li>
+    </ul>
+    <div class="sidebar-nda">
+      <strong>NDA Note</strong>
+      Some visual assets are blurred or omitted per Meta's confidentiality policy. The full design rationale and process are documented here.
+    </div>
+  </aside>
+
+  <!-- ARTICLE -->
+  <article class="article">
+
+    <!-- 01 PROBLEM -->
+    <div class="cs-section" id="problem">
+      <p class="cs-section-label" data-num="01">Context</p>
+      <h2>The problem: no standard, no consistency</h2>
+      <p>Meta's internal search engine surfaces thousands of employee-built pages — documentation, team wikis, project hubs, tooling references. The problem was that every team was designing these pages from scratch, without any shared template or layout guidelines.</p>
+      <p>The result was predictable: inconsistent visual hierarchy, heavy reliance on non-standard HTML and inline CSS, and pages that were genuinely hard to read. Engineers were spending time on design decisions they shouldn't have to make, and employees navigating the search results were hitting wildly different reading experiences from page to page.</p>
+
+      <div class="callout">
+        <p>"Meta employees encounter technical challenges while designing and programming websites for Meta's internal search engine."</p>
+        <cite>— Project Brief</cite>
+      </div>
+
+      <p>My task was to design a standard template that would reduce cognitive load for readers, decrease the engineering overhead of non-standard markup, and work across the enormous range of content types living in the search engine.</p>
+    </div>
+
+    <!-- 02 RESEARCH -->
+    <div class="cs-section" id="research">
+      <p class="cs-section-label" data-num="02">Research</p>
+      <h2>Auditing 46 live sites to find the real patterns</h2>
+      <p>Before designing anything, my researcher Tarjni and I systematically reviewed 46 existing Meta internal search engine sites. We weren't looking for what looked nice — we were cataloguing what was actually working for readers and what was creating friction.</p>
+      <p>We sorted every pattern into one of two buckets:</p>
+
+      <div class="pattern-grid">
+        <div class="pattern-card good">
+          <p class="pattern-card-label">Keep — what worked</p>
+          <ul>
+            <li>Modern visual design with hero imagery</li>
+            <li>Team identity — branding that made pages feel owned</li>
+            <li>Component-based layouts (cards, accordions)</li>
+            <li>Simplified top navigation</li>
+          </ul>
+        </div>
+        <div class="pattern-card bad">
+          <p class="pattern-card-label">Remove — what didn't</p>
+          <ul>
+            <li>Walls of unbroken text, no visual rest</li>
+            <li>Null data states — broken layouts when content was missing</li>
+            <li>Hierarchy inconsistencies — unclear heading levels</li>
+            <li>Inline CSS workarounds creating maintenance debt</li>
+          </ul>
+        </div>
+      </div>
+
+      <p>The audit also surfaced a structural constraint: any template had to accommodate both content-dense documentation pages <em>and</em> sparse landing pages without breaking. That range of content types became the hardest part of the grid system design.</p>
+    </div>
+
+    <!-- 03 PRINCIPLES -->
+    <div class="cs-section" id="principles">
+      <p class="cs-section-label" data-num="03">Design Principles</p>
+      <h2>Five principles that governed every decision</h2>
+      <p>Before opening Figma, I defined the principles I'd evaluate every design decision against. These came directly from the audit — each one was a response to a real problem I observed in the 46 sites.</p>
+
+      <div class="process-strip">
+        <div class="process-step">
+          <p class="ps-num">01</p>
+          <p class="ps-name">Company guidelines first</p>
+        </div>
+        <div class="process-step">
+          <p class="ps-num">02</p>
+          <p class="ps-name">Component-driven</p>
+        </div>
+        <div class="process-step">
+          <p class="ps-num">03</p>
+          <p class="ps-name">Modern, readable</p>
+        </div>
+        <div class="process-step">
+          <p class="ps-num">04</p>
+          <p class="ps-name">Accessible by default</p>
+        </div>
+      </div>
+
+      <p><strong>Company design guidelines first:</strong> Every layout decision had to live within Meta's existing design system. This wasn't a constraint — it was the point. If the template required custom components, engineers would have to build and maintain them. I scoped the template to what already existed.</p>
+      <p><strong>Component-driven:</strong> Cards and accordions were the two components I leaned on most. Cards for content groupings that needed visual separation; accordions for dense documentation where progressive disclosure reduced cognitive load without hiding important content.</p>
+      <p><strong>Accessible by default:</strong> Color contrast, heading hierarchy, and keyboard navigation were non-negotiables. Internal tools often get deprioritized on accessibility — this template would bake it in structurally.</p>
+    </div>
+
+    <!-- 04 KEY CHALLENGE -->
+    <div class="cs-section" id="challenge">
+      <p class="cs-section-label" data-num="04">Key Design Challenge</p>
+      <h2>The grid problem: one system, infinite content ranges</h2>
+      <p>The hardest part of this project wasn't visual — it was structural. Applying Meta's standard column grid in a way that genuinely worked across all 46 site types required more iteration than anything else in the project.</p>
+      <p>Most grid systems assume a relatively consistent content density. Meta's internal sites ranged from sparse one-page team hubs to multi-section documentation sites with dozens of content blocks. The same 12-column grid applied rigidly would produce either too much whitespace on sparse pages or uncomfortable density on heavy ones.</p>
+
+      <div class="img-placeholder">
+        <p class="img-placeholder-label">Grid iteration wireframes<br><span style="opacity:0.5;font-size:0.65rem;">Blurred per NDA</span></p>
+      </div>
+
+      <p>My solution was a modified 12-column system with defined responsive breakpoints that allowed sub-grids at the section level. Individual page sections could adapt their internal column count (12, 8, or 6 columns) depending on their content type — without disrupting the page's overall structural grid.</p>
+      <p>I tested each grid variation against a representative set of pages from the audit — including the densest documentation page and the sparsest landing page — before settling on the final approach.</p>
+    </div>
+
+    <!-- 05 ITERATIONS -->
+    <div class="cs-section" id="iterations">
+      <p class="cs-section-label" data-num="05">Design Iterations</p>
+      <h2>From lo-fi to final: what changed and why</h2>
+      <p>I moved through three rounds of iteration across the 5-week sprint. Lo-fi wireframes came first — focused entirely on layout logic, not visual polish. I wanted to solve the structural problems before touching color or type.</p>
+
+      <div class="img-placeholder" style="aspect-ratio: 4/3;">
+        <p class="img-placeholder-label">Lo-fidelity wireframes — landing page<br><span style="opacity:0.5;font-size:0.65rem;">Blurred per NDA</span></p>
+      </div>
+
+      <p>The landing page wireframe established three core zones: a hero area for team identity and primary navigation, a content body using the card grid, and a footer with consistent secondary links. The hero's purpose was twofold — it gave teams a place to assert their identity, and it gave readers an immediate signal that they'd landed in the right place.</p>
+
+      <div class="img-placeholder" style="aspect-ratio: 4/3;">
+        <p class="img-placeholder-label">Lo-fidelity wireframes — sub-pages<br><span style="opacity:0.5;font-size:0.65rem;">Blurred per NDA</span></p>
+      </div>
+
+      <p>Sub-page wireframes introduced the accordion component for dense content and established the heading hierarchy rules. The final iteration applied Meta's visual design system — color, type scale, spacing tokens — on top of the structural skeleton.</p>
+
+      <div class="img-placeholder">
+        <p class="img-placeholder-label">Final design — landing page<br><span style="opacity:0.5;font-size:0.65rem;">Blurred per NDA</span></p>
+      </div>
+    </div>
+
+    <!-- 06 OUTCOME -->
+    <div class="cs-section" id="outcome">
+      <p class="cs-section-label" data-num="06">Outcome</p>
+      <h2>A shipped template used across thousands of internal sites</h2>
+      <p>The template shipped internally during my five-week internship. It was adopted as the standard for Meta's internal search engine pages, covering landing page and sub-page patterns built entirely on Meta's existing component library.</p>
+      <p>The direct outcomes:</p>
+      <ul>
+        <li>Reduced reliance on non-standard HTML and inline CSS workarounds</li>
+        <li>Consistent visual hierarchy across all search engine result pages</li>
+        <li>A reusable system teams could use without needing a designer involved</li>
+      </ul>
+
+      <div class="stat-row">
+        <div class="stat-card">
+          <span class="stat-num">46</span>
+          <span class="stat-desc">Sites audited in research phase</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-num">1000s</span>
+          <span class="stat-desc">Employees affected by the template</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-num">5 wks</span>
+          <span class="stat-desc">From brief to shipped</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 07 REFLECTION -->
+    <div class="cs-section" id="reflection">
+      <p class="cs-section-label" data-num="07">Reflection</p>
+      <h2>What I'd do differently with more time</h2>
+      <p>Five weeks was tight, and I made tradeoffs I'd revisit given more runway. The biggest one: I never ran formal usability testing with the employees who would actually use the template. Feedback was collected informally, but structured concept testing with even 3–5 participants would have surfaced edge cases I couldn't anticipate from the audit alone.</p>
+      <p>I also relied heavily on the pattern audit to make design decisions — which was efficient, but meant some choices were inferred rather than validated directly with users. In hindsight, I'd front-load at least one round of user interviews in week one, before the audit, to establish a clearer understanding of what employees most struggled with when building pages.</p>
+      <p>The grid system, which took the most time, would also benefit from a lightweight design token approach — defining spacing and column behaviour as variables rather than fixed values — to make future adaptation easier as Meta's design system evolves.</p>
+
+      <div class="callout">
+        <p>"This project deepened my understanding of the time, consistency, and dedication it takes to become a successful product designer."</p>
+      </div>
+    </div>
+
+  </article>
+</div>
+
+<!-- NEXT PROJECT -->
+<a href="bvcc-project.html" class="next-project">
+  <div>
+    <p class="next-label">Next project</p>
+    <p class="next-title">BVCC — College Mental Health App</p>
+  </div>
+  <span class="next-arrow">→</span>
+</a>
+
+<footer>
+  <span>© 2025 Autumn Grayson</span>
+  <a href="autumn-portfolio.html" style="color:var(--ink3);text-decoration:none;">← Back to all work</a>
+</footer>
+
+<script>
+const sections = document.querySelectorAll('.cs-section');
+const navLinks = document.querySelectorAll('.sidebar-nav a');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      navLinks.forEach(l => l.classList.remove('active'));
+      const id = entry.target.id;
+      const link = document.querySelector(`.sidebar-nav a[href="#${id}"]`);
+      if (link) link.classList.add('active');
+    }
+  });
+}, { rootMargin: '-20% 0px -60% 0px' });
+sections.forEach(s => observer.observe(s));
+</script>
+</body>
+</html>
