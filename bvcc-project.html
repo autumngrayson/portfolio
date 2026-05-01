@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BVCC Mental Health App — Autumn Grayson</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #F5F2EC;
+    --bg2: #EDE9E0;
+    --ink: #1A1714;
+    --ink2: #5C5650;
+    --ink3: #9B948C;
+    --accent: #C84B2F;
+    --accent2: #E8A87C;
+    --white: #FDFCF9;
+    --border: rgba(26,23,20,0.12);
+    --serif: 'DM Serif Display', Georgia, serif;
+    --sans: 'DM Sans', system-ui, sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: var(--sans);
+    background: var(--bg);
+    color: var(--ink);
+    font-size: 16px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.25rem 3rem;
+    background: rgba(245,242,236,0.88);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-back {
+    font-size: 0.875rem;
+    color: var(--ink3);
+    text-decoration: none;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: color 0.2s;
+  }
+  .nav-back:hover { color: var(--ink); }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; align-items: center; }
+  .nav-links a {
+    font-size: 0.875rem;
+    font-weight: 400;
+    color: var(--ink2);
+    text-decoration: none;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--accent); }
+
+  .project-hero {
+    padding: 10rem 3rem 5rem;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .project-eyebrow {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--accent);
+    font-weight: 500;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  .project-eyebrow::after {
+    content: '';
+    display: block;
+    height: 1px;
+    width: 40px;
+    background: var(--accent);
+    opacity: 0.4;
+  }
+  .project-title {
+    font-family: var(--serif);
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    line-height: 1.05;
+    max-width: 800px;
+    margin-bottom: 2rem;
+  }
+  .project-title em { font-style: italic; color: var(--accent); }
+  .project-subtitle {
+    font-size: 1.125rem;
+    color: var(--ink2);
+    font-weight: 300;
+    max-width: 600px;
+    line-height: 1.7;
+    margin-bottom: 3rem;
+  }
+  .meta-row {
+    display: flex;
+    gap: 3rem;
+    padding: 2rem 0;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    flex-wrap: wrap;
+  }
+  .meta-label {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--ink3);
+    margin-bottom: 0.3rem;
+  }
+  .meta-val {
+    font-size: 0.9375rem;
+    color: var(--ink);
+  }
+
+  .project-body {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 3rem 8rem;
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    gap: 5rem;
+    align-items: start;
+  }
+  .sidebar {
+    position: sticky;
+    top: 100px;
+  }
+  .sidebar-nav {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    border-left: 1px solid var(--border);
+  }
+  .sidebar-nav li a {
+    display: block;
+    padding: 0.6rem 1.25rem;
+    font-size: 0.8125rem;
+    color: var(--ink3);
+    text-decoration: none;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    transition: color 0.2s, border-color 0.2s;
+    border-left: 2px solid transparent;
+    margin-left: -1px;
+  }
+  .sidebar-nav li a:hover,
+  .sidebar-nav li a.active {
+    color: var(--accent);
+    border-left-color: var(--accent);
+  }
+
+  .article { padding-top: 4rem; }
+  .cs-section {
+    margin-bottom: 5rem;
+    scroll-margin-top: 100px;
+  }
+  .cs-section-label {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--ink3);
+    margin-bottom: 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  .cs-section-label::before {
+    content: attr(data-num);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: var(--bg2);
+    font-size: 0.65rem;
+    color: var(--ink3);
+    flex-shrink: 0;
+  }
+  .cs-section h2 {
+    font-family: var(--serif);
+    font-size: 1.875rem;
+    line-height: 1.15;
+    margin-bottom: 1.25rem;
+    color: var(--ink);
+  }
+  .cs-section p {
+    font-size: 1rem;
+    color: var(--ink2);
+    font-weight: 300;
+    line-height: 1.8;
+    margin-bottom: 1.25rem;
+    max-width: 640px;
+  }
+  .cs-section ul, .cs-section ol {
+    margin: 0.5rem 0 1.25rem 1.5rem;
+    max-width: 600px;
+  }
+  .cs-section li {
+    font-size: 1rem;
+    color: var(--ink2);
+    font-weight: 300;
+    line-height: 1.75;
+    margin-bottom: 0.35rem;
+  }
+  .cs-section strong { color: var(--ink); font-weight: 500; }
+
+  .callout {
+    border-left: 3px solid var(--accent);
+    padding: 1.25rem 1.5rem;
+    background: var(--white);
+    border-radius: 0 2px 2px 0;
+    margin: 2rem 0;
+    max-width: 620px;
+  }
+  .callout p {
+    font-family: var(--serif);
+    font-size: 1.15rem;
+    font-style: italic;
+    color: var(--ink);
+    line-height: 1.6;
+    margin: 0;
+  }
+  .callout cite {
+    display: block;
+    margin-top: 0.75rem;
+    font-family: var(--sans);
+    font-size: 0.8rem;
+    font-style: normal;
+    color: var(--ink3);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  /* INTERVIEW CARDS */
+  .interview-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+    margin: 1.5rem 0;
+    max-width: 640px;
+  }
+  .interview-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    padding: 1.25rem 1.5rem;
+  }
+  .interview-q {
+    font-size: 0.75rem;
+    color: var(--ink3);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 0.6rem;
+  }
+  .interview-a {
+    font-family: var(--serif);
+    font-size: 1rem;
+    font-style: italic;
+    color: var(--ink);
+    line-height: 1.5;
+  }
+  .interview-label {
+    font-size: 0.7rem;
+    color: var(--ink3);
+    margin-top: 0.75rem;
+    display: block;
+  }
+
+  /* INSIGHT STRIP */
+  .insight-strip {
+    background: var(--ink);
+    border-radius: 2px;
+    padding: 2rem;
+    margin: 2rem 0;
+    max-width: 640px;
+  }
+  .insight-strip h4 {
+    font-family: var(--serif);
+    font-size: 1.1rem;
+    color: var(--accent2);
+    margin-bottom: 1rem;
+  }
+  .insight-strip p {
+    font-size: 0.9375rem;
+    color: rgba(255,255,255,0.65);
+    font-weight: 300;
+    line-height: 1.7;
+    margin-bottom: 0;
+    max-width: none;
+  }
+
+  /* RESEARCH QUESTIONS */
+  .rq-list {
+    counter-reset: rq;
+    list-style: none;
+    margin: 1.25rem 0 !important;
+    padding: 0 !important;
+    max-width: 600px;
+  }
+  .rq-list li {
+    counter-increment: rq;
+    display: flex;
+    gap: 1rem;
+    padding: 0.875rem 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.9375rem !important;
+    color: var(--ink2) !important;
+    font-weight: 300 !important;
+    line-height: 1.5 !important;
+    margin-bottom: 0 !important;
+  }
+  .rq-list li::before {
+    content: "0" counter(rq);
+    font-size: 0.7rem;
+    color: var(--ink3);
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    min-width: 24px;
+    padding-top: 0.2rem;
+  }
+
+  /* PROCESS STRIP */
+  .process-strip {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    overflow: hidden;
+    margin: 1.5rem 0;
+    max-width: 620px;
+  }
+  .process-step {
+    padding: 1.25rem 1rem;
+    border-right: 1px solid var(--border);
+    text-align: center;
+  }
+  .process-step:last-child { border-right: none; }
+  .ps-num {
+    font-size: 0.65rem;
+    color: var(--ink3);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.35rem;
+  }
+  .ps-name {
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--ink);
+    line-height: 1.3;
+  }
+
+  /* PROBLEM STATEMENT BOX */
+  .problem-statement {
+    background: var(--bg2);
+    border-radius: 2px;
+    padding: 2rem 2rem;
+    margin: 2rem 0;
+    max-width: 620px;
+    border-left: 3px solid var(--ink);
+  }
+  .problem-statement .ps-label {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--ink3);
+    margin-bottom: 0.75rem;
+  }
+  .problem-statement p {
+    font-family: var(--serif);
+    font-size: 1.2rem;
+    color: var(--ink);
+    line-height: 1.5;
+    font-style: italic;
+    max-width: none;
+    margin: 0;
+  }
+
+  /* STATS */
+  .stat-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin: 2rem 0;
+    max-width: 620px;
+  }
+  .stat-card {
+    background: var(--ink);
+    color: var(--white);
+    padding: 1.5rem 1.25rem;
+    border-radius: 2px;
+  }
+  .stat-num {
+    font-family: var(--serif);
+    font-size: 2rem;
+    display: block;
+    color: var(--accent2);
+    margin-bottom: 0.35rem;
+  }
+  .stat-desc {
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.55);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    line-height: 1.4;
+  }
+
+  /* PLACEHOLDER */
+  .img-placeholder {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    aspect-ratio: 16/9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 2rem 0;
+    max-width: 640px;
+    position: relative;
+    overflow: hidden;
+  }
+  .img-placeholder::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 20px,
+      rgba(26,23,20,0.03) 20px,
+      rgba(26,23,20,0.03) 21px
+    );
+  }
+  .img-placeholder-label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--ink3);
+    text-align: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* NEXT PROJECT */
+  .next-project {
+    background: var(--ink);
+    padding: 5rem 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    text-decoration: none;
+    color: var(--white);
+    transition: background 0.25s;
+  }
+  .next-project:hover { background: var(--accent); }
+  .next-label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: rgba(255,255,255,0.5);
+    margin-bottom: 0.5rem;
+  }
+  .next-title {
+    font-family: var(--serif);
+    font-size: 2rem;
+    color: var(--white);
+  }
+  .next-arrow { font-size: 2rem; color: rgba(255,255,255,0.4); transition: transform 0.2s; }
+  .next-project:hover .next-arrow { transform: translateX(8px); }
+
+  footer {
+    padding: 2rem 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid var(--border);
+    font-size: 0.8125rem;
+    color: var(--ink3);
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .fade-up { animation: fadeUp 0.6s ease forwards; }
+  .d1 { animation-delay: 0.1s; opacity: 0; animation-fill-mode: forwards; }
+  .d2 { animation-delay: 0.2s; opacity: 0; animation-fill-mode: forwards; }
+  .d3 { animation-delay: 0.35s; opacity: 0; animation-fill-mode: forwards; }
+
+  @media (max-width: 900px) {
+    nav { padding: 1rem 1.5rem; }
+    .project-hero { padding: 8rem 1.5rem 3rem; }
+    .project-body { grid-template-columns: 1fr; padding: 0 1.5rem 5rem; gap: 0; }
+    .sidebar { display: none; }
+    .article { padding-top: 2rem; }
+    .interview-grid { grid-template-columns: 1fr; }
+    .process-strip { grid-template-columns: repeat(2, 1fr); }
+    .stat-row { grid-template-columns: 1fr 1fr; }
+    .next-project { padding: 3rem 1.5rem; }
+    footer { padding: 2rem 1.5rem; flex-direction: column; gap: 1rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="autumn-portfolio.html" class="nav-back">← Back to work</a>
+  <ul class="nav-links">
+    <li><a href="autumn-portfolio.html#work">Work</a></li>
+    <li><a href="autumn-portfolio.html#about">About</a></li>
+    <li><a href="autumn-portfolio.html#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="project-hero">
+  <p class="project-eyebrow fade-up">BVCC · 2022 · UX Research + Design</p>
+  <h1 class="project-title fade-up d1">
+    Designing a <em>community</em><br>for college students<br>fighting stress alone
+  </h1>
+  <p class="project-subtitle fade-up d2">
+    An 8-week research and design sprint to understand how stress, routine, and mental health connect for college students — and build a community-first mobile app that addresses the root cause, not the symptom.
+  </p>
+  <div class="meta-row fade-up d3">
+    <div class="meta-item">
+      <p class="meta-label">Role</p>
+      <p class="meta-val">UX Researcher + Designer</p>
+    </div>
+    <div class="meta-item">
+      <p class="meta-label">Methods</p>
+      <p class="meta-val">User Interviews, Card Sorting</p>
+    </div>
+    <div class="meta-item">
+      <p class="meta-label">Duration</p>
+      <p class="meta-val">8 weeks</p>
+    </div>
+    <div class="meta-item">
+      <p class="meta-label">Tools</p>
+      <p class="meta-val">Figma, Sketch</p>
+    </div>
+    <div class="meta-item">
+      <p class="meta-label">Deliverable</p>
+      <p class="meta-val">Hi-fidelity prototype</p>
+    </div>
+  </div>
+</div>
+
+<!-- BODY -->
+<div class="project-body">
+
+  <aside class="sidebar">
+    <ul class="sidebar-nav">
+      <li><a href="#brief">The Brief</a></li>
+      <li><a href="#research-qs">Research Questions</a></li>
+      <li><a href="#interviews">User Interviews</a></li>
+      <li><a href="#synthesis">Synthesis</a></li>
+      <li><a href="#problem">Problem Statement</a></li>
+      <li><a href="#design">Design Direction</a></li>
+      <li><a href="#outcome">Outcome</a></li>
+      <li><a href="#reflection">Reflection</a></li>
+    </ul>
+  </aside>
+
+  <article class="article">
+
+    <!-- 01 BRIEF -->
+    <div class="cs-section" id="brief">
+      <p class="cs-section-label" data-num="01">The Brief</p>
+      <h2>A deliberately open challenge</h2>
+      <p>The brief gave almost nothing to work with: <em>"Identify a universal conflict for college students and create a digital solution that facilitates growth."</em> No predefined problem space, no obvious target user, no prescribed solution type.</p>
+      <p>This kind of ambiguity is both exciting and dangerous. The temptation is to jump straight to an app idea you already have in your head and retrofit a research process around it. I wanted to resist that — and let the research actually determine the direction.</p>
+
+      <div class="callout">
+        <p>"Identify a universal conflict for college students and create a digital solution that facilitates growth."</p>
+        <cite>— Project Brief</cite>
+      </div>
+
+      <p>The challenge became: how do you scope a research effort when you genuinely don't know what you're looking for yet? My answer was to start with questions, not hunches.</p>
+    </div>
+
+    <!-- 02 RESEARCH QUESTIONS -->
+    <div class="cs-section" id="research-qs">
+      <p class="cs-section-label" data-num="02">Research Planning</p>
+      <h2>Writing questions before picking up the phone</h2>
+      <p>Before I conducted a single interview, I wrote out five research questions to define what I actually needed to learn. This step matters more than most designers give it credit for — without clear research questions, user interviews tend to drift toward validating what you already believe.</p>
+      <p>My five questions:</p>
+      <ol class="rq-list">
+        <li>How does mental health impact the ability for college students to perform well?</li>
+        <li>How can stress be alleviated in order to better "external performance"?</li>
+        <li>What is the source of motivation for the average college student?</li>
+        <li>Which mechanisms — apps, planners — are most popular amongst college students for self-improvement?</li>
+        <li>How do students struggle internally, beyond just academics?</li>
+      </ol>
+      <p>Question five was the most important. Most student productivity apps focus on external performance — grades, deadlines, output. I wanted to understand the internal experience, because that's where behavior actually originates.</p>
+    </div>
+
+    <!-- 03 INTERVIEWS -->
+    <div class="cs-section" id="interviews">
+      <p class="cs-section-label" data-num="03">User Interviews</p>
+      <h2>Four interviews, four different angles on the same problem</h2>
+      <p>I conducted one-on-one interviews with four college students, using open-ended questions designed to surface how they actually experienced stress and routine — not how they thought they should.</p>
+      <p>Some of the exchanges that shaped the direction:</p>
+
+      <div class="interview-grid">
+        <div class="interview-card">
+          <p class="interview-q">On having a routine</p>
+          <p class="interview-a">"I am still trying to figure out my system."</p>
+          <span class="interview-label">Student 1</span>
+        </div>
+        <div class="interview-card">
+          <p class="interview-q">On challenges to routine</p>
+          <p class="interview-a">"The distracting college environment."</p>
+          <span class="interview-label">Student 2</span>
+        </div>
+        <div class="interview-card">
+          <p class="interview-q">On handling stress</p>
+          <p class="interview-a">"Journaling, trying not to overthink things."</p>
+          <span class="interview-label">Student 3</span>
+        </div>
+        <div class="interview-card">
+          <p class="interview-q">On what success looks like</p>
+          <p class="interview-a">"A lot less stressed and a lot more productive."</p>
+          <span class="interview-label">Student 4</span>
+        </div>
+      </div>
+
+      <p>The interviews also revealed something important about framing: none of these students talked about their problem as a productivity problem. They talked about it as a stress problem. The thing getting in the way of routines wasn't laziness or poor planning — it was a mental and emotional environment that made sustained effort harder.</p>
+    </div>
+
+    <!-- 04 SYNTHESIS -->
+    <div class="cs-section" id="synthesis">
+      <p class="cs-section-label" data-num="04">Synthesis</p>
+      <h2>Three patterns across four interviews</h2>
+      <p>After the interviews, I identified the recurring themes that appeared across multiple participants:</p>
+
+      <div class="insight-strip">
+        <h4>The three core drivers</h4>
+        <p><strong style="color:var(--accent2);">Stress is the umbrella.</strong> How students handled stress determined everything downstream — their ability to manage time, stick to routines, and show up academically.<br><br>
+        <strong style="color:var(--accent2);">The transition problem.</strong> College is often the first time students have to self-govern. There's no parent, no fixed schedule, no external structure — and most students had never had to build their own from scratch.<br><br>
+        <strong style="color:var(--accent2);">Motivation is relational.</strong> Students talked about accountability to other people — not apps, not habits, not personal goals — as the most sustainable motivation source.</p>
+      </div>
+
+      <p>That third insight was the one that most directly shaped the design direction. If motivation is fundamentally social for this user group, then the design solution shouldn't be another solo tracking app. It needed to be community-first.</p>
+    </div>
+
+    <!-- 05 PROBLEM STATEMENT -->
+    <div class="cs-section" id="problem">
+      <p class="cs-section-label" data-num="05">Problem Statement</p>
+      <h2>Defining the real problem</h2>
+      <p>Most student productivity tools address the symptom — poor time management, missed deadlines — without touching the root cause. My research pointed to something more specific.</p>
+
+      <div class="problem-statement">
+        <p class="ps-label">Problem Statement</p>
+        <p>College students struggle to build and maintain routines because stress undermines self-regulation — and the college environment actively removes the external structure that previously made discipline easier.</p>
+      </div>
+
+      <p>The key distinction: this isn't a skills problem. Most students know how to plan. The problem is that stress and environmental chaos erode their ability to execute on plans they already have. A solution that teaches planning skills would miss the point. A solution that builds community and reduces isolation would address the actual driver.</p>
+    </div>
+
+    <!-- 06 DESIGN -->
+    <div class="cs-section" id="design">
+      <p class="cs-section-label" data-num="06">Design Direction</p>
+      <h2>Community over gamification</h2>
+      <p>Most mental health and productivity apps default to gamification — streaks, badges, points. My research suggested this was the wrong direction for this user group. Students wanted accountability from people, not from an app counter that reset when they missed a day.</p>
+      <p>The design direction became a community forum: a place where students could share their routines, support each other, and find accountability partners without the pressure of clinical mental health language or the loneliness of solo tracking.</p>
+
+      <p>Four principles drove every design decision:</p>
+      <div class="process-strip">
+        <div class="process-step">
+          <p class="ps-num">01</p>
+          <p class="ps-name">Low-friction onboarding</p>
+        </div>
+        <div class="process-step">
+          <p class="ps-num">02</p>
+          <p class="ps-name">Community first</p>
+        </div>
+        <div class="process-step">
+          <p class="ps-num">03</p>
+          <p class="ps-name">Low cognitive load</p>
+        </div>
+        <div class="process-step">
+          <p class="ps-num">04</p>
+          <p class="ps-name">Non-judgmental tone</p>
+        </div>
+      </div>
+
+      <p><strong>Low-friction onboarding</strong> was critical. Students struggling with stress don't have patience for long setup flows. The onboarding had to get them to value in under two minutes.</p>
+      <p><strong>Community first</strong> meant the forum surface was the primary screen — not a dashboard, not a personal tracker. The first thing you see when you open the app is other students, not your own metrics.</p>
+      <p><strong>Non-judgmental tone</strong> ran through every word choice in the UI. Mental health is a sensitive context. Language that felt clinical or performative would break trust immediately.</p>
+
+      <div class="img-placeholder">
+        <p class="img-placeholder-label">Lo-fidelity wireframes — onboarding flow</p>
+      </div>
+
+      <div class="img-placeholder">
+        <p class="img-placeholder-label">Lo-fidelity wireframes — community forum</p>
+      </div>
+
+      <div class="img-placeholder">
+        <p class="img-placeholder-label">Final design — hi-fidelity screens</p>
+      </div>
+    </div>
+
+    <!-- 07 OUTCOME -->
+    <div class="cs-section" id="outcome">
+      <p class="cs-section-label" data-num="07">Outcome</p>
+      <h2>A research-validated prototype, ready for testing</h2>
+      <p>The project delivered a high-fidelity mobile prototype covering three core flows: onboarding, the community forum, and a routine check-in feature. Every design decision in the prototype traced back to a specific research insight.</p>
+      <p>What the research validated before a single screen was designed:</p>
+      <ul>
+        <li>The core problem (stress as the root cause, not time management skills)</li>
+        <li>The right solution space (community and accountability, not solo tracking)</li>
+        <li>The tone and framing (peer-to-peer, not clinical)</li>
+        <li>The priority of onboarding (students need immediate value or they bounce)</li>
+      </ul>
+
+      <div class="stat-row">
+        <div class="stat-card">
+          <span class="stat-num">4</span>
+          <span class="stat-desc">Students interviewed in research</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-num">5</span>
+          <span class="stat-desc">Research questions defined upfront</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-num">8 wks</span>
+          <span class="stat-desc">Brief to hi-fi prototype</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 08 REFLECTION -->
+    <div class="cs-section" id="reflection">
+      <p class="cs-section-label" data-num="08">Reflection</p>
+      <h2>What I'd build in with more time</h2>
+      <p>The project's research foundation was strong, but I didn't close the loop with usability validation. I designed to the evidence I had — and the research was good — but there's a meaningful difference between research-informed design decisions and tested design decisions. I didn't run concept testing before calling the prototype final.</p>
+      <p>In hindsight, even informal guerrilla testing — showing the prototype to 3–4 students and watching them navigate it — would have surfaced usability issues I couldn't see because I was too close to the work. I knew the system too well to notice where it was confusing.</p>
+      <p>That's the one thing I'd build into any future project from day one: a validation round before final polish. Not to change direction, but to catch the places where the design makes sense to the designer but not to the user.</p>
+      <p>I'd also expand the research sample. Four interviews is enough to find patterns, but not enough to find edge cases or outliers. A second round of interviews after the initial synthesis — testing whether the problem statement held across a wider sample — would have made the foundation more robust.</p>
+
+      <div class="callout">
+        <p>The most important research question isn't "what do users need?" — it's "how do I know I'm solving the right problem?"</p>
+      </div>
+    </div>
+
+  </article>
+</div>
+
+<!-- NEXT PROJECT -->
+<a href="meta-project.html" class="next-project">
+  <div>
+    <p class="next-label">Next project</p>
+    <p class="next-title">Meta — Internal Search Design System</p>
+  </div>
+  <span class="next-arrow">→</span>
+</a>
+
+<footer>
+  <span>© 2025 Autumn Grayson</span>
+  <a href="autumn-portfolio.html" style="color:var(--ink3);text-decoration:none;">← Back to all work</a>
+</footer>
+
+<script>
+const sections = document.querySelectorAll('.cs-section');
+const navLinks = document.querySelectorAll('.sidebar-nav a');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      navLinks.forEach(l => l.classList.remove('active'));
+      const id = entry.target.id;
+      const link = document.querySelector(`.sidebar-nav a[href="#${id}"]`);
+      if (link) link.classList.add('active');
+    }
+  });
+}, { rootMargin: '-20% 0px -60% 0px' });
+sections.forEach(s => observer.observe(s));
+</script>
+</body>
+</html>
