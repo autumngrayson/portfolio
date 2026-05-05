@@ -3,263 +3,128 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Autumn Grayson — UX Designer</title>
+<title>Autumn Grayson — UX Designer &amp; Product Manager</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,200;0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  :root {
-    --bg: #F4F7F2;
-    --bg2: #E8EFE4;
-    --ink: #1C2118;
-    --ink2: #4A5446;
-    --ink3: #8A9886;
-    --accent: #3D6B35;
-    --accent2: #6EA860;
-    --accent3: #B8D4B2;
-    --white: #FFFFFF;
-    --border: rgba(28,33,24,0.12);
-    --serif: 'DM Serif Display', Georgia, serif;
-    --sans: 'DM Sans', system-ui, sans-serif;
-  }
-  html { scroll-behavior: smooth; }
-  body {
-    font-family: var(--sans);
-    background: var(--bg);
-    color: var(--ink);
-    font-size: 16px;
-    line-height: 1.65;
-    -webkit-font-smoothing: antialiased;
-  }
-  nav {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 1.25rem 3rem;
-    background: rgba(244,247,242,0.9);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--border);
-  }
-  .nav-logo { font-family: var(--serif); font-size: 1.1rem; color: var(--ink); text-decoration: none; }
-  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
-  .nav-links a { font-size: 0.875rem; color: var(--ink2); text-decoration: none; letter-spacing: 0.04em; text-transform: uppercase; transition: color 0.2s; }
-  .nav-links a:hover { color: var(--accent); }
-
-  /* HERO */
-  .hero {
-    min-height: 100vh;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    padding-top: 80px;
-  }
-  .hero-left {
-    padding: 7rem 3rem 6rem 3rem;
-    display: flex; flex-direction: column; justify-content: center;
-  }
-  .hero-eyebrow {
-    font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.12em;
-    color: var(--accent); font-weight: 500; margin-bottom: 1.5rem;
-  }
-  .hero-name {
-    font-family: var(--serif);
-    font-size: clamp(2.75rem, 4.5vw, 4rem);
-    line-height: 1.05; color: var(--ink); margin-bottom: 1.5rem;
-  }
-  .hero-name em { font-style: italic; color: var(--accent); }
-  .hero-desc {
-    font-size: 1.05rem; color: var(--ink2); max-width: 420px;
-    line-height: 1.75; margin-bottom: 2.5rem; font-weight: 300;
-  }
-  .hero-cta {
-    display: inline-flex; align-items: center; gap: 0.75rem;
-    background: var(--ink); color: var(--white);
-    padding: 0.875rem 1.75rem; border-radius: 2px; text-decoration: none;
-    font-size: 0.875rem; letter-spacing: 0.04em; text-transform: uppercase;
-    font-weight: 500; transition: background 0.2s, transform 0.15s; width: fit-content;
-  }
-  .hero-cta:hover { background: var(--accent); transform: translateY(-1px); }
-
-  /* HERO RIGHT — headshot */
-  .hero-right {
-    background: var(--bg2);
-    position: relative; overflow: hidden;
-    display: flex; align-items: flex-end; justify-content: center;
-    padding: 3rem 3rem 0;
-  }
-  .headshot-frame {
-    position: relative; width: 100%; max-width: 380px;
-  }
-  .headshot-img {
-    width: 100%; display: block;
-    border-radius: 4px 4px 0 0;
-    object-fit: cover; object-position: center top;
-    max-height: 520px;
-    border: 1px solid var(--border); border-bottom: none;
-    box-shadow: 0 -8px 40px rgba(0,0,0,0.08);
-  }
-  .headshot-tag {
-    position: absolute; top: 1.5rem; right: -1rem;
-    background: var(--accent); color: white;
-    font-size: 0.75rem; padding: 0.4rem 1rem;
-    border-radius: 2px; letter-spacing: 0.06em;
-    text-transform: uppercase; font-weight: 500;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-  }
-
-  /* WORK SECTION */
-  .work-section { padding: 8rem 3rem; }
-  .section-header {
-    display: flex; align-items: baseline; justify-content: space-between;
-    margin-bottom: 4rem;
-  }
-  .section-label {
-    font-size: 0.75rem; text-transform: uppercase;
-    letter-spacing: 0.12em; color: var(--ink3); font-weight: 500;
-  }
-  .section-title {
-    font-family: var(--serif); font-size: 2.5rem;
-    line-height: 1.1; max-width: 400px;
-  }
-  .case-study-grid {
-    display: grid; grid-template-columns: 1fr 1fr; gap: 2px;
-  }
-  .case-card {
-    background: var(--white); padding: 3rem;
-    text-decoration: none; color: inherit; cursor: pointer;
-    position: relative; overflow: hidden;
-    transition: background 0.25s; border: 1px solid var(--border);
-  }
-  .case-card:hover { background: var(--bg2); }
-  .case-card:hover .case-arrow { transform: translate(4px, -4px); }
-  .case-number { font-size: 0.75rem; color: var(--ink3); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 2rem; }
-  .case-company { font-family: var(--serif); font-size: 1.75rem; line-height: 1.1; margin-bottom: 0.75rem; }
-  .case-desc { font-size: 0.9375rem; color: var(--ink2); line-height: 1.6; margin-bottom: 2rem; font-weight: 300; }
-  .case-meta { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 2.5rem; }
-  .tag {
-    font-size: 0.75rem; padding: 0.35rem 0.875rem;
-    border: 1px solid var(--border); border-radius: 2px;
-    color: var(--ink2); letter-spacing: 0.04em;
-    text-transform: uppercase; background: var(--bg);
-  }
-  .tag.filled { background: var(--ink); color: var(--white); border-color: var(--ink); }
-  .case-arrow {
-    display: inline-flex; align-items: center; gap: 0.5rem;
-    font-size: 0.8125rem; text-transform: uppercase;
-    letter-spacing: 0.08em; color: var(--accent); font-weight: 500;
-    transition: transform 0.2s;
-  }
-  .case-impact {
-    background: var(--bg); border-radius: 2px;
-    padding: 1.25rem 1.5rem; margin-bottom: 1.5rem;
-  }
-  .case-impact-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--ink3); margin-bottom: 0.25rem; }
-  .case-impact-value { font-size: 0.9375rem; color: var(--ink2); font-weight: 300; }
-
-  /* ABOUT — dark green */
-  .about-section {
-    padding: 8rem 3rem;
-    background: #1C2E18;
-    color: var(--white);
-    display: grid; grid-template-columns: 1fr 1fr; gap: 6rem;
-  }
-  .about-section .section-label { color: var(--accent3); }
-  .about-title {
-    font-family: var(--serif); font-size: 2.5rem;
-    line-height: 1.1; margin-top: 1rem; color: var(--white);
-  }
-  .about-title em { font-style: italic; color: var(--accent2); }
-  .about-body { padding-top: 1.5rem; }
-  .about-body p {
-    font-size: 1rem; color: rgba(255,255,255,0.65);
-    line-height: 1.8; font-weight: 300; margin-bottom: 1.25rem;
-  }
-  .about-skills { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 2rem; }
-  .about-skill {
-    font-size: 0.75rem; padding: 0.35rem 0.875rem;
-    border: 1px solid rgba(255,255,255,0.2); border-radius: 2px;
-    color: rgba(255,255,255,0.6); letter-spacing: 0.04em; text-transform: uppercase;
-  }
-  .about-links {
-    display: flex; flex-direction: column; gap: 0;
-    border-top: 1px solid rgba(255,255,255,0.12); padding-top: 0; margin-top: 2rem;
-  }
-  .about-link-item {
-    display: flex; justify-content: space-between; align-items: center;
-    text-decoration: none; color: rgba(255,255,255,0.5);
-    font-size: 0.875rem; text-transform: uppercase; letter-spacing: 0.08em;
-    transition: color 0.2s;
-    padding: 1.25rem 0;
-    border-bottom: 1px solid rgba(255,255,255,0.08);
-  }
-  .about-link-item:hover { color: var(--white); }
-  .about-link-item span { font-size: 1rem; }
-
-  /* CONTACT */
-  .contact-section {
-    padding: 8rem 3rem; text-align: center; background: var(--bg2);
-  }
-  .contact-section .section-label { color: var(--ink3); margin-bottom: 1rem; display: block; }
-  .contact-big {
-    font-family: var(--serif);
-    font-size: clamp(2.5rem, 6vw, 5rem);
-    line-height: 1.05; margin-bottom: 2rem;
-    max-width: 700px; margin-left: auto; margin-right: auto;
-  }
-  .contact-big em { font-style: italic; color: var(--accent); }
-  .contact-desc { font-size: 1rem; color: var(--ink2); font-weight: 300; margin-bottom: 3rem; }
-  .contact-email {
-    display: inline-flex; align-items: center; gap: 0.75rem;
-    font-family: var(--serif); font-size: 1.25rem; color: var(--ink);
-    text-decoration: none; border-bottom: 1px solid var(--accent);
-    padding-bottom: 0.25rem; transition: color 0.2s;
-  }
-  .contact-email:hover { color: var(--accent); }
-
-  /* HERO CARD */
-  .hero-card {
-    background: var(--white); border-radius: 4px; border: 1px solid var(--border);
-    padding: 1.5rem; box-shadow: 0 4px 20px rgba(0,0,0,0.06); margin-bottom: 1.5rem;
-  }
-  .hero-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1rem; }
-  .hero-stat-row {
-    display: flex; gap: 2rem; margin-top: 1.5rem;
-    padding-top: 1.5rem; border-top: 1px solid var(--border);
-  }
-  .hero-stat-num { font-family: var(--serif); font-size: 1.75rem; color: var(--ink); display: block; }
-  .hero-stat-label { font-size: 0.75rem; color: var(--ink3); text-transform: uppercase; letter-spacing: 0.06em; }
-
-  footer {
-    padding: 2rem 3rem; display: flex;
-    justify-content: space-between; align-items: center;
-    border-top: 1px solid var(--border);
-    font-size: 0.8125rem; color: var(--ink3);
-  }
-
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-  .fade-up { animation: fadeUp 0.7s ease forwards; }
-  .d1 { animation-delay: 0.15s; opacity: 0; animation-fill-mode: forwards; }
-  .d2 { animation-delay: 0.3s; opacity: 0; animation-fill-mode: forwards; }
-  .d3 { animation-delay: 0.45s; opacity: 0; animation-fill-mode: forwards; }
-
-  @media (max-width: 900px) {
-    nav { padding: 1rem 1.5rem; }
-    .hero { grid-template-columns: 1fr; }
-    .hero-right { display: none; }
-    .hero-left { padding: 6rem 1.5rem 4rem; }
-    .work-section { padding: 5rem 1.5rem; }
-    .case-study-grid { grid-template-columns: 1fr; }
-    .about-section { grid-template-columns: 1fr; padding: 5rem 1.5rem; gap: 3rem; }
-    .contact-section { padding: 5rem 1.5rem; }
-    footer { padding: 2rem 1.5rem; flex-direction: column; gap: 1rem; text-align: center; }
-  }
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#F3F5EF;--bg2:#E5EAE0;--ink:#141710;--ink2:#3A4036;--ink3:#7A8575;
+  --accent:#2C5325;--accent2:#4E8E43;--white:#FFFFFF;--border:rgba(20,23,16,0.1);
+  --serif:'DM Serif Display',Georgia,serif;--sans:'DM Sans',system-ui,sans-serif;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--bg);color:var(--ink);-webkit-font-smoothing:antialiased;cursor:none;overflow-x:hidden}
+.cursor{width:10px;height:10px;background:var(--accent);border-radius:50%;position:fixed;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .25s,height .25s,background .2s}
+.cursor-ring{width:36px;height:36px;border:1.5px solid var(--accent);border-radius:50%;position:fixed;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);opacity:.45;transition:width .25s,height .25s,opacity .2s}
+.cursor-grow{width:18px!important;height:18px!important;background:#C07A28!important}
+.ring-grow{width:56px!important;height:56px!important;opacity:.18!important}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1.5rem 3rem;transition:background .35s,padding .3s}
+nav.scrolled{background:rgba(243,245,239,.93);backdrop-filter:blur(16px);padding:1rem 3rem;border-bottom:1px solid var(--border)}
+.nav-logo{font-family:var(--serif);font-size:1.1rem;color:var(--ink);text-decoration:none}
+.nav-links{display:flex;gap:2.5rem;list-style:none}
+.nav-links a{font-size:.775rem;color:var(--ink3);text-decoration:none;letter-spacing:.1em;text-transform:uppercase;transition:color .2s}
+.nav-links a:hover{color:var(--ink)}
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:flex-end;padding:9rem 3rem 5rem;gap:2.5rem}
+.eyebrow{font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--ink3);display:flex;align-items:center;gap:1rem}
+.eyebrow::before{content:'';display:inline-block;width:40px;height:1px;background:var(--ink3)}
+.hero-name{font-family:var(--serif);font-size:clamp(4rem,10.5vw,9.5rem);line-height:.92;letter-spacing:-.02em;color:var(--ink)}
+.hero-name em{font-style:italic;color:var(--accent)}
+.hero-bot{display:flex;justify-content:space-between;align-items:flex-end}
+.hero-tag{max-width:300px;font-size:1rem;color:var(--ink2);font-weight:300;line-height:1.75}
+.hero-scroll{font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink3);display:flex;flex-direction:column;align-items:center;gap:.75rem;writing-mode:vertical-rl}
+.hero-scroll::after{content:'';width:1px;height:60px;background:var(--ink3);animation:sp 2s ease-in-out infinite}
+@keyframes sp{0%,100%{opacity:.3}50%{opacity:1}}
+.marquee-wrap{background:var(--accent);padding:.875rem 0;overflow:hidden;white-space:nowrap}
+.marquee-track{display:inline-flex;animation:ms 24s linear infinite}
+.marquee-track span{font-size:.68rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.5);padding:0 2rem}
+.marquee-track span b{color:rgba(255,255,255,.92);font-weight:400}
+@keyframes ms{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+section{padding:7rem 3rem}
+.sec-label{font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:var(--ink3);margin-bottom:1rem;display:flex;align-items:center;gap:.75rem}
+.sec-label::before{content:'';display:inline-block;width:28px;height:1px;background:var(--ink3)}
+.work-head{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:5rem;gap:2rem;flex-wrap:wrap}
+.work-title{font-family:var(--serif);font-size:clamp(2rem,4.5vw,3.2rem);line-height:1.05;color:var(--ink)}
+.work-intro{max-width:380px;font-size:.9375rem;color:var(--ink2);font-weight:300;line-height:1.8}
+.projects{display:flex;flex-direction:column}
+.pcard{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--border);padding:4.5rem 0;gap:5rem;align-items:center;text-decoration:none;color:inherit}
+.pcard:last-child{border-bottom:1px solid var(--border)}
+.pcard.flip{direction:rtl}
+.pcard.flip>*{direction:ltr}
+.pcard:hover .ptitle{color:var(--accent)}
+.pcard:hover .pimg img{transform:scale(1.04)}
+.pcard:hover .pcta{gap:1rem}
+.pinfo{display:flex;flex-direction:column;gap:1.5rem}
+.pmeta{display:flex;gap:1rem;align-items:center}
+.pnum{font-family:var(--serif);font-size:1rem;color:var(--ink3);font-style:italic}
+.pco{font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink3)}
+.ptitle{font-family:var(--serif);font-size:clamp(1.7rem,2.8vw,2.5rem);line-height:1.1;color:var(--ink);transition:color .25s}
+.pdesc{font-size:.9375rem;color:var(--ink2);font-weight:300;line-height:1.8;max-width:380px}
+.ptags{display:flex;flex-wrap:wrap;gap:.5rem}
+.ptag{font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;padding:.3rem .8rem;border:1px solid var(--border);border-radius:2px;color:var(--ink3)}
+.pcta{font-size:.875rem;color:var(--accent);display:flex;align-items:center;gap:.5rem;transition:gap .25s}
+.pcta::after{content:'→'}
+.pimg{aspect-ratio:4/3;border-radius:4px;overflow:hidden;background:var(--bg2)}
+.pimg img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .65s ease}
+#about{background:var(--ink)}
+.about-grid{display:grid;grid-template-columns:1fr 1.5fr;gap:6rem;align-items:start}
+.ab-photo-wrap{position:relative}
+.ab-photo{width:100%;aspect-ratio:3/4;object-fit:cover;object-position:center 15%;border-radius:4px;display:block}
+.ab-badge{position:absolute;bottom:-1.25rem;right:-1.25rem;background:var(--accent2);color:#fff;font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;padding:.65rem 1rem;border-radius:2px}
+.ab-label{font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:1rem;display:flex;align-items:center;gap:.65rem}
+.ab-label::before{content:'';display:inline-block;width:24px;height:1px;background:rgba(255,255,255,.25)}
+.ab-head{font-family:var(--serif);font-size:clamp(1.6rem,3vw,2.4rem);color:#fff;line-height:1.12;margin-bottom:1.75rem}
+.ab-head em{color:var(--accent2);font-style:italic}
+.ab-bio{font-size:.9375rem;color:rgba(255,255,255,.55);font-weight:300;line-height:1.85;margin-bottom:1.25rem}
+.exp-list{margin-top:2rem;border-top:1px solid rgba(255,255,255,.08)}
+.exp-item{display:flex;justify-content:space-between;align-items:center;padding:.85rem 0;border-bottom:1px solid rgba(255,255,255,.07)}
+.exp-role{font-size:.85rem;color:rgba(255,255,255,.85);font-weight:300}
+.exp-co{font-size:.7rem;color:rgba(255,255,255,.35);text-transform:uppercase;letter-spacing:.06em}
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;margin-top:2rem;padding-top:2rem;border-top:1px solid rgba(255,255,255,.08)}
+.stat-n{font-family:var(--serif);font-size:2.25rem;color:#fff;line-height:1}
+.stat-l{font-size:.68rem;color:rgba(255,255,255,.35);letter-spacing:.08em;text-transform:uppercase;margin-top:.3rem}
+.skills-row{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;margin-top:2.5rem}
+.sg-title{font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:.875rem}
+.skill-pills{display:flex;flex-wrap:wrap;gap:.4rem}
+.skill-pill{font-size:.8rem;padding:.3rem .85rem;border:1px solid var(--border);border-radius:999px;color:var(--ink2);background:var(--white)}
+#contact{background:var(--bg2);text-align:center;padding:10rem 3rem}
+.ct-pre{font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--ink3);margin-bottom:1.25rem}
+.ct-head{font-family:var(--serif);font-size:clamp(2.8rem,6vw,5.5rem);line-height:1;color:var(--ink);margin-bottom:1.25rem}
+.ct-head em{font-style:italic;color:var(--accent)}
+.ct-sub{font-size:1rem;color:var(--ink2);font-weight:300;margin-bottom:2.5rem}
+.ct-btns{display:flex;justify-content:center;gap:1.5rem;flex-wrap:wrap}
+.ct-btn{display:inline-block;font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;padding:.875rem 2rem;border-radius:2px;transition:background .2s,color .2s,border-color .2s}
+.ct-btn.primary{color:var(--accent);border:1.5px solid var(--accent)}
+.ct-btn.primary:hover{background:var(--accent);color:#fff}
+.ct-btn.secondary{color:var(--ink2);border:1.5px solid var(--border);background:var(--white)}
+.ct-btn.secondary:hover{background:var(--ink);color:#fff;border-color:var(--ink)}
+footer{padding:1.75rem 3rem;display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--border);font-size:.8rem;color:var(--ink3)}
+.fl{display:flex;gap:2rem;list-style:none}
+.fl a{color:var(--ink3);text-decoration:none;transition:color .2s}
+.fl a:hover{color:var(--ink)}
+.reveal{opacity:0;transform:translateY(30px);transition:opacity .75s cubic-bezier(.16,1,.3,1),transform .75s cubic-bezier(.16,1,.3,1)}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.d1{transition-delay:.1s}.d2{transition-delay:.22s}.d3{transition-delay:.38s}
+@media(max-width:900px){
+  nav{padding:1.25rem 1.5rem}nav.scrolled{padding:1rem 1.5rem}
+  .hero{padding:8rem 1.5rem 4rem}section{padding:5rem 1.5rem}
+  .work-head{flex-direction:column}.pcard{grid-template-columns:1fr;gap:2rem}
+  .pcard.flip{direction:ltr}.about-grid{grid-template-columns:1fr;gap:3rem}
+  .ab-badge{right:0}.skills-row{grid-template-columns:1fr 1fr}
+  footer{flex-direction:column;gap:1rem}body{cursor:auto}
+  .cursor,.cursor-ring{display:none}
+}
+@media(max-width:580px){
+  .hero-bot{flex-direction:column;align-items:flex-start;gap:1.5rem}
+  .hero-scroll{display:none}.skills-row{grid-template-columns:1fr}#contact{padding:6rem 1.5rem}
+}
 </style>
 </head>
 <body>
-
-<nav>
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursor-ring"></div>
+<nav id="nav">
   <a href="#" class="nav-logo">Autumn Grayson</a>
   <ul class="nav-links">
     <li><a href="#work">Work</a></li>
@@ -268,115 +133,139 @@
     <li><a href="#contact">Contact</a></li>
   </ul>
 </nav>
-
-<!-- HERO -->
-<section class="hero" id="home">
-  <div class="hero-left">
-    <p class="hero-eyebrow fade-up">UX &amp; Product Designer — Seattle, WA</p>
-    <h1 class="hero-name fade-up d1">
-      Designing systems<br>that <em>reduce</em><br>friction.
-    </h1>
-    <p class="hero-desc fade-up d2">
-      I'm Autumn — a product designer who turns messy, ambiguous problems into clear, usable experiences. Previously at Oracle and Meta. Focused on information architecture, design systems, and research-led product thinking.
-    </p>
-    <a href="#work" class="hero-cta fade-up d3">View my work ↓</a>
+<div class="hero" id="home">
+  <p class="eyebrow">UX Design &middot; Product Management</p>
+  <h1 class="hero-name">Autumn<br><em>Grayson</em></h1>
+  <div class="hero-bot">
+    <p class="hero-tag">Designing products that work for people. Previously Oracle &amp; Meta. Seattle, WA.</p>
+    <div class="hero-scroll">Scroll</div>
   </div>
-  <div class="hero-right">
-    <div class="headshot-frame">
-      <span class="headshot-tag">Available for hire</span>
-      <img class="headshot-img" src="headshot_option1-Picsart-BackgroundRemover.png" alt="Autumn Grayson" />
+</div>
+<div class="marquee-wrap" aria-hidden="true">
+  <div class="marquee-track">
+    <span><b>Oracle</b></span><span>UX Product Manager</span>
+    <span><b>Meta</b></span><span>Product Design Intern</span>
+    <span><b>BVCC</b></span><span>UX/PM Teaching Assistant</span>
+    <span><b>TAF</b></span><span>Curriculum Designer</span>
+    <span><b>NCA&amp;T</b></span><span>HCI Research</span>
+    <span><b>Google</b></span><span>Student Developer Club Founder</span>
+    <span><b>Oracle</b></span><span>UX Product Manager</span>
+    <span><b>Meta</b></span><span>Product Design Intern</span>
+    <span><b>BVCC</b></span><span>UX/PM Teaching Assistant</span>
+    <span><b>TAF</b></span><span>Curriculum Designer</span>
+    <span><b>NCA&amp;T</b></span><span>HCI Research</span>
+    <span><b>Google</b></span><span>Student Developer Club Founder</span>
+  </div>
+</div>
+<section id="work">
+  <div class="work-head reveal">
+    <div>
+      <p class="sec-label">Selected Work</p>
+      <h2 class="work-title">Case Studies</h2>
     </div>
+    <p class="work-intro">Three projects that show how I think — from messy problem space to high-fidelity solution, grounded in real user needs.</p>
   </div>
-</section>
-
-<!-- WORK -->
-<section class="work-section" id="work">
-  <div class="section-header">
-    <span class="section-label">Selected Work</span>
-    <h2 class="section-title">Two projects. Both real. Both shipped.</h2>
-  </div>
-  <div class="case-study-grid">
-
-    <!-- META -->
-    <a href="meta-project.html" class="case-card">
-      <p class="case-number">01 — 2022</p>
-      <h3 class="case-company">Meta — Internal Search<br>Design System</h3>
-      <p class="case-desc">Standardizing how Meta employees design and build pages for the company's internal search engine — reducing engineering overhead and improving readability across thousands of internal sites.</p>
-      <div class="case-meta">
-        <span class="tag">5 weeks</span>
-        <span class="tag">Product Design</span>
-        <span class="tag">Design Systems</span>
-        <span class="tag">Figma</span>
+  <div class="projects">
+    <a class="pcard reveal" href="meta-project.html">
+      <div class="pinfo">
+        <div class="pmeta"><span class="pnum">01</span><span class="pco">Meta &middot; Summer 2022</span></div>
+        <h3 class="ptitle">Redesigning Internal Product Team Pages</h3>
+        <p class="pdesc">Designed internal web templates using Figma and Origami, viewed by 77,000 employees — improving consistency and readability across Meta's internal product sites.</p>
+        <div class="ptags"><span class="ptag">UX Design</span><span class="ptag">Figma</span><span class="ptag">Origami</span><span class="ptag">Design Systems</span></div>
+        <span class="pcta">View Case Study</span>
       </div>
-      <div class="case-impact">
-        <p class="case-impact-label">Impact</p>
-        <p class="case-impact-value">Template adopted across Meta's internal search engine — affecting thousands of employee-facing sites</p>
-      </div>
-      <span class="case-arrow">Read case study →</span>
+      <div class="pimg"><img src="meta_final_template.png" alt="Meta internal page redesign" loading="lazy"></div>
     </a>
-
-    <!-- BVCC -->
-    <a href="bvcc-project.html" class="case-card">
-      <p class="case-number">02 — 2022</p>
-      <h3 class="case-company">BVCC — College Mental<br>Health App</h3>
-      <p class="case-desc">Identifying the connection between stress, routine, and academic performance in college students — then designing a community-based mobile app to address mental health through peer support.</p>
-      <div class="case-meta">
-        <span class="tag">8 weeks</span>
-        <span class="tag">UX Research</span>
-        <span class="tag">UX Design</span>
-        <span class="tag">Mobile Design</span>
-        <span class="tag">Card Sorting</span>
+    <a class="pcard flip reveal" href="bvcc-project.html">
+      <div class="pinfo">
+        <div class="pmeta"><span class="pnum">02</span><span class="pco">BVCC &middot; 2025</span></div>
+        <h3 class="ptitle">BeWell Buddy — Student Mental Wellness App</h3>
+        <p class="pdesc">End-to-end UX design for a student mental health platform — from low-fi sketches to high-fidelity prototypes with moderated discussion boards and an AI chatbot onboarding flow.</p>
+        <div class="ptags"><span class="ptag">UX Research</span><span class="ptag">Wireframing</span><span class="ptag">Prototyping</span><span class="ptag">User Testing</span></div>
+        <span class="pcta">View Case Study</span>
       </div>
-      <div class="case-impact">
-        <p class="case-impact-label">Impact</p>
-        <p class="case-impact-value">Research-backed MVP; user interviews validated core problem before first pixel was designed</p>
-      </div>
-      <span class="case-arrow">Read case study →</span>
+      <div class="pimg"><img src="bvcc_high_fidelity.png" alt="BeWell Buddy prototype" loading="lazy"></div>
     </a>
-
+    <a class="pcard reveal" href="hoopr-project.html">
+      <div class="pinfo">
+        <div class="pmeta"><span class="pnum">03</span><span class="pco">Side Project &middot; 2024–2025</span></div>
+        <h3 class="ptitle">Hoopr — Find Your Next Pickup Run</h3>
+        <p class="pdesc">A pickup basketball app for finding nearby courts, hosting and joining rallies, logging scores, and matching with players at your skill level.</p>
+        <div class="ptags"><span class="ptag">Mobile UX</span><span class="ptag">Product Design</span><span class="ptag">React Native</span><span class="ptag">Maps</span></div>
+        <span class="pcta">View Case Study</span>
+      </div>
+      <div class="pimg"><img src="IMG_2647.PNG" alt="Hoopr basketball app" loading="lazy"></div>
+    </a>
   </div>
 </section>
-
-<!-- ABOUT -->
-<section class="about-section" id="about">
-  <div>
-    <p class="section-label">About me</p>
-    <h2 class="about-title">I design for the<br>humans <em>behind</em><br>the screen.</h2>
-  </div>
-  <div class="about-body">
-    <p>I'm Autumn Grayson, a UX and product designer with experience at Meta and Oracle. I specialize in information architecture, design systems, and research-led product thinking — especially in complex, ambiguous problem spaces where the right question matters more than the first solution.</p>
-    <p>My work sits at the intersection of clarity and usability: reducing cognitive load, improving navigability, and making sure what gets built actually reflects what users need. I'm equally comfortable running user interviews on day one and iterating in Figma on day twenty.</p>
-    <p>Based in Seattle. Open to full-time UX/product design or management roles — particularly in tech, healthcare, and consumer-facing products.</p>
-    <div class="about-skills">
-      <span class="about-skill">UX Research</span>
-      <span class="about-skill">Interaction Design</span>
-      <span class="about-skill">Design Systems</span>
-      <span class="about-skill">Information Architecture</span>
-      <span class="about-skill">Figma</span>
-      <span class="about-skill">Prototyping</span>
-      <span class="about-skill">Usability Testing</span>
-      <span class="about-skill">Card Sorting</span>
+<section id="about">
+  <div class="about-grid">
+    <div class="ab-photo-wrap reveal">
+      <img class="ab-photo" src="headshot.JPG" alt="Autumn Grayson">
+      <div class="ab-badge">Seattle, WA</div>
     </div>
-    <div class="about-links">
-      <a href="resume.html" class="about-link-item">Resume <span>↗</span></a>
-      <a href="https://linkedin.com/in/autumngrayson" target="_blank" class="about-link-item">LinkedIn <span>↗</span></a>
-      <a href="#contact" class="about-link-item">Get in touch <span>↓</span></a>
+    <div>
+      <p class="ab-label reveal">About Me</p>
+      <h2 class="ab-head reveal d1">Bridging design<br>and <em>product thinking</em></h2>
+      <p class="ab-bio reveal d2">I'm a UX designer and PM who spent 2+ years at Oracle driving product strategy for motion design systems — standardizing components across 20+ teams, reducing handoff time by 25%, and shipping 28 motion animations for Oracle's Gen AI platform in 4 months.</p>
+      <p class="ab-bio reveal d2">Before Oracle, I designed internal web templates at Meta viewed by 77k employees. Right now I'm teaching — designing UX curriculum for middle schoolers at TAF and mentoring college students at BVCC.</p>
+      <div class="exp-list reveal d3">
+        <div class="exp-item"><span class="exp-role">UX Product Manager</span><span class="exp-co">Oracle &middot; 2024–2026</span></div>
+        <div class="exp-item"><span class="exp-role">Product Design Intern</span><span class="exp-co">Meta &middot; 2022</span></div>
+        <div class="exp-item"><span class="exp-role">UX Design Instructor</span><span class="exp-co">TAF &middot; 2025–Present</span></div>
+        <div class="exp-item"><span class="exp-role">UX/PM Teaching Assistant</span><span class="exp-co">BVCC &middot; 2025–Present</span></div>
+        <div class="exp-item"><span class="exp-role">B.S. Information Technology, Honors</span><span class="exp-co">NCA&amp;T &middot; 2023</span></div>
+      </div>
+      <div class="stats reveal d3">
+        <div><p class="stat-n">77k</p><p class="stat-l">Employees reached at Meta</p></div>
+        <div><p class="stat-n">28</p><p class="stat-l">Animations shipped at Oracle</p></div>
+        <div><p class="stat-n">50+</p><p class="stat-l">Students taught at TAF</p></div>
+        <div><p class="stat-n">25%</p><p class="stat-l">Design-to-dev time saved</p></div>
+      </div>
     </div>
   </div>
 </section>
-
-<!-- CONTACT -->
-<section class="contact-section" id="contact">
-  <span class="section-label">Contact</span>
-  <h2 class="contact-big">Let's make something<br><em>worth using.</em></h2>
-  <p class="contact-desc">Open to full-time roles, freelance projects, and conversations about interesting design problems.</p>
-  <a href="mailto:grayson.autumnnicole@gmail.com" class="contact-email">grayson.autumnnicole@gmail.com ↗</a>
+<section id="skills">
+  <p class="sec-label reveal">Toolkit</p>
+  <h2 class="reveal" style="font-family:var(--serif);font-size:clamp(2rem,4.5vw,3rem);line-height:1.05;color:var(--ink);margin-bottom:0">What I work with</h2>
+  <div class="skills-row">
+    <div class="reveal"><p class="sg-title">Design</p><div class="skill-pills"><span class="skill-pill">Figma</span><span class="skill-pill">Origami</span><span class="skill-pill">UX Research</span><span class="skill-pill">Wireframing</span><span class="skill-pill">Prototyping</span><span class="skill-pill">Design Systems</span><span class="skill-pill">Usability Testing</span></div></div>
+    <div class="reveal d1"><p class="sg-title">Product</p><div class="skill-pills"><span class="skill-pill">Roadmapping</span><span class="skill-pill">Agile / Scrum</span><span class="skill-pill">Jira</span><span class="skill-pill">Confluence</span><span class="skill-pill">Asana</span><span class="skill-pill">Stakeholder Alignment</span></div></div>
+    <div class="reveal d2"><p class="sg-title">Technical</p><div class="skill-pills"><span class="skill-pill">HTML</span><span class="skill-pill">CSS</span><span class="skill-pill">SQL</span><span class="skill-pill">PHP</span><span class="skill-pill">Excel</span></div></div>
+  </div>
 </section>
-
+<section id="contact">
+  <p class="ct-pre reveal">Let's work together</p>
+  <h2 class="ct-head reveal d1">Got a role<br>or <em>project?</em></h2>
+  <p class="ct-sub reveal d2">I'm open to full-time UX design roles at top tech companies.</p>
+  <div class="ct-btns reveal d3">
+    <a class="ct-btn primary" href="mailto:grayson.autumnnicole@gmail.com">Email me</a>
+    <a class="ct-btn secondary" href="https://linkedin.com/in/autumngrayson" target="_blank">LinkedIn</a>
+    <a class="ct-btn secondary" href="resume.html">View Resume</a>
+  </div>
+</section>
 <footer>
-  <span>© 2025 Autumn Grayson</span>
-  <span>UX &amp; Product Designer — Seattle, WA</span>
+  <span>&copy; 2026 Autumn Grayson</span>
+  <ul class="fl">
+    <li><a href="#work">Work</a></li><li><a href="#about">About</a></li>
+    <li><a href="resume.html">Resume</a></li><li><a href="mailto:grayson.autumnnicole@gmail.com">Email</a></li>
+  </ul>
 </footer>
-
+<script>
+(function(){
+  var cur=document.getElementById('cursor'),ring=document.getElementById('cursor-ring');
+  var mx=0,my=0,rx=0,ry=0;
+  document.addEventListener('mousemove',function(e){mx=e.clientX;my=e.clientY});
+  document.querySelectorAll('a,button').forEach(function(el){
+    el.addEventListener('mouseenter',function(){cur.classList.add('cursor-grow');ring.classList.add('ring-grow')});
+    el.addEventListener('mouseleave',function(){cur.classList.remove('cursor-grow');ring.classList.remove('ring-grow')});
+  });
+  (function tick(){cur.style.left=mx+'px';cur.style.top=my+'px';rx+=(mx-rx)*.13;ry+=(my-ry)*.13;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(tick)})();
+  var nav=document.getElementById('nav');
+  window.addEventListener('scroll',function(){nav.classList.toggle('scrolled',window.scrollY>60)},{passive:true});
+  var io=new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting){x.target.classList.add('visible');io.unobserve(x.target)}})},{threshold:.1,rootMargin:'0px 0px -30px 0px'});
+  document.querySelectorAll('.reveal').forEach(function(el){io.observe(el)});
+})();
+</script>
 </body>
 </html>
