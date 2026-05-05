@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hoopr — Case Study — Autumn Grayson</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,200;0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#F3F5EF;--ink:#141710;--ink2:#3A4036;--ink3:#7A8575;
+  --accent:#2C5325;--accent2:#4E8E43;--white:#fff;--border:rgba(20,23,16,0.1);
+  --orange:#E8751A;--orange-light:#FFF0E4;
+  --serif:'DM Serif Display',Georgia,serif;--sans:'DM Sans',system-ui,sans-serif;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--bg);color:var(--ink);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+nav{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1rem 3rem;background:rgba(243,245,239,.95);backdrop-filter:blur(16px);border-bottom:1px solid var(--border)}
+.nav-logo{font-family:var(--serif);font-size:1rem;color:var(--ink);text-decoration:none}
+.nav-back{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);text-decoration:none;transition:color .2s}
+.nav-back:hover{color:var(--ink)}
+.cs-hero{background:var(--ink);padding:6rem 3rem 0}
+.cs-label{font-size:.65rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:1rem;display:flex;align-items:center;gap:.65rem}
+.cs-label::before{content:'';display:inline-block;width:24px;height:1px;background:rgba(255,255,255,.25)}
+.cs-title{font-family:var(--serif);font-size:clamp(2.5rem,6vw,5rem);color:#fff;line-height:.95;margin-bottom:1.5rem}
+.cs-title em{font-style:italic;color:var(--orange)}
+.cs-sub{font-size:1rem;color:rgba(255,255,255,.55);font-weight:300;line-height:1.8;max-width:520px;margin-bottom:2.5rem}
+.cs-meta-row{display:flex;flex-wrap:wrap;gap:2.5rem;padding-bottom:3rem}
+.cs-meta-label{font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:.3rem}
+.cs-meta-val{font-size:.9rem;color:#fff;font-weight:300}
+.phones-strip{display:flex;justify-content:center;gap:1.5rem;align-items:flex-end;padding:0 3rem;background:var(--ink)}
+.phone{width:170px;flex-shrink:0;background:#111;border-radius:24px;overflow:hidden;border:2px solid rgba(255,255,255,.07);box-shadow:0 20px 60px rgba(0,0,0,.5)}
+.phone img{width:100%;display:block}
+.phone.up{transform:translateY(-28px)}
+.cs-section{padding:5rem 3rem;border-bottom:1px solid var(--border)}
+.cs-section:last-of-type{border-bottom:none}
+.sec-label{font-size:.65rem;letter-spacing:.18em;text-transform:uppercase;color:var(--ink3);margin-bottom:.875rem;display:flex;align-items:center;gap:.65rem}
+.sec-label::before{content:'';display:inline-block;width:22px;height:1px;background:var(--ink3)}
+.sec-title{font-family:var(--serif);font-size:clamp(1.6rem,3vw,2.4rem);line-height:1.1;color:var(--ink);margin-bottom:1.5rem}
+.body-text{font-size:.9375rem;color:var(--ink2);font-weight:300;line-height:1.85;max-width:660px}
+.body-text+.body-text{margin-top:1rem}
+.stat-row{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:8px;overflow:hidden;margin-top:2rem}
+.stat-cell{background:var(--white);padding:1.5rem 1rem;text-align:center}
+.stat-big{font-family:var(--serif);font-size:1.75rem;color:var(--orange);line-height:1}
+.stat-small{font-size:.65rem;color:var(--ink3);letter-spacing:.08em;text-transform:uppercase;margin-top:.35rem}
+.feats{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:2rem}
+.feat{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:1.5rem}
+.feat-icon{font-size:22px;margin-bottom:.875rem}
+.feat-title{font-size:.9rem;font-weight:500;color:var(--ink);margin-bottom:.4rem}
+.feat-desc{font-size:.8125rem;color:var(--ink2);font-weight:300;line-height:1.7}
+.screens{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;margin-top:2rem}
+.screen{background:var(--white);border:1px solid var(--border);border-radius:10px;overflow:hidden}
+.screen-img{overflow:hidden;background:#111;aspect-ratio:9/19.5}
+.screen-img img{width:100%;display:block}
+.screen-info{padding:1rem}
+.screen-title{font-size:.85rem;font-weight:500;color:var(--ink);margin-bottom:.25rem}
+.screen-desc{font-size:.75rem;color:var(--ink3);font-weight:300;line-height:1.65}
+.steps{display:flex;flex-direction:column;margin-top:2rem}
+.step{display:grid;grid-template-columns:56px 1fr;gap:1.5rem;padding:1.5rem 0;border-bottom:1px solid var(--border);align-items:start}
+.step:last-child{border-bottom:none}
+.step-n{font-family:var(--serif);font-size:2rem;color:var(--border);line-height:1;font-style:italic;text-align:center}
+.step-title{font-size:.9rem;font-weight:500;color:var(--ink);margin-bottom:.4rem}
+.step-text{font-size:.8125rem;color:var(--ink2);font-weight:300;line-height:1.75}
+.insights{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:2rem}
+.insight{background:var(--orange-light);border:1px solid rgba(232,117,26,.15);border-radius:10px;padding:1.25rem}
+.insight-q{font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;color:var(--orange);margin-bottom:.5rem}
+.insight-text{font-size:.8125rem;color:var(--ink2);font-weight:300;line-height:1.7}
+.outcome{background:var(--ink);border-radius:10px;padding:2rem;margin-top:2rem;display:grid;grid-template-columns:repeat(3,1fr)}
+.oc{padding:1rem;text-align:center}
+.oc+.oc{border-left:1px solid rgba(255,255,255,.08)}
+.oc-n{font-family:var(--serif);font-size:2rem;color:var(--orange);line-height:1}
+.oc-l{font-size:.65rem;color:rgba(255,255,255,.4);letter-spacing:.08em;text-transform:uppercase;margin-top:.3rem}
+.cs-nav{display:flex;justify-content:space-between;padding:3rem;border-top:1px solid var(--border)}
+.cs-nav-link{text-decoration:none;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);transition:color .2s;display:flex;flex-direction:column;gap:.35rem}
+.cs-nav-link:hover{color:var(--ink)}
+.cs-nav-title{font-family:var(--serif);font-size:1.1rem;color:var(--ink);letter-spacing:0;text-transform:none}
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .75s cubic-bezier(.16,1,.3,1),transform .75s cubic-bezier(.16,1,.3,1)}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.d1{transition-delay:.12s}.d2{transition-delay:.24s}.d3{transition-delay:.38s}
+@media(max-width:900px){
+  nav{padding:1rem 1.5rem}.cs-hero{padding:5rem 1.5rem 0}
+  .phones-strip{gap:.75rem;padding:0 1.5rem}.phone{width:120px}
+  .cs-section{padding:4rem 1.5rem}.stat-row{grid-template-columns:1fr 1fr}
+  .feats{grid-template-columns:1fr}.screens{grid-template-columns:1fr 1fr}
+  .insights{grid-template-columns:1fr}.outcome{grid-template-columns:1fr}
+  .oc+.oc{border-left:none;border-top:1px solid rgba(255,255,255,.08)}
+  .cs-nav{padding:2rem 1.5rem}
+}
+@media(max-width:580px){
+  .screens{grid-template-columns:1fr}.cs-meta-row{gap:1.5rem}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-back">← All Work</a>
+  <a href="index.html" class="nav-logo">Autumn Grayson</a>
+</nav>
+
+<div class="cs-hero">
+  <p class="cs-label reveal">Case Study 03 &middot; Side Project &middot; 2024–2025</p>
+  <h1 class="cs-title reveal d1">Hoopr — Find Your<br><em>Next Run</em></h1>
+  <p class="cs-sub reveal d2">A pickup basketball app that lets players find nearby courts, host and join "rallies," track scores, and match with others near their skill level — all from a live map.</p>
+  <div class="cs-meta-row reveal d3">
+    <div><p class="cs-meta-label">My Role</p><p class="cs-meta-val">UX Design &amp; Product</p></div>
+    <div><p class="cs-meta-label">Platform</p><p class="cs-meta-val">iOS (React Native)</p></div>
+    <div><p class="cs-meta-label">Status</p><p class="cs-meta-val">In Development</p></div>
+    <div><p class="cs-meta-label">Tools</p><p class="cs-meta-val">Figma, React Native</p></div>
+  </div>
+</div>
+
+<div class="phones-strip">
+  <div class="phone reveal"><img src="IMG_2646.PNG" alt="Hoopr filters panel"></div>
+  <div class="phone up reveal d1"><img src="IMG_2647.PNG" alt="Hoopr map view"></div>
+  <div class="phone reveal d2"><img src="IMG_2645.PNG" alt="Cal Anderson court detail"></div>
+</div>
+
+<div class="cs-section reveal">
+  <p class="sec-label">The Problem</p>
+  <h2 class="sec-title">Finding pickup basketball is unnecessarily hard</h2>
+  <p class="body-text">Pickup basketball players face a recurring problem: they want to play, but they don't know where people are running games right now. Google Maps shows courts — not live activity. Group chats are fragmented. There's no way to know if a court is empty, packed, or running a game at your level.</p>
+  <p class="body-text">Hoopr solves this with a live, social court map — where players can host a rally, see who's playing nearby, filter by skill tier, and build a game history over time.</p>
+  <div class="stat-row">
+    <div class="stat-cell"><p class="stat-big">🏀</p><p class="stat-small">Rally hosting</p></div>
+    <div class="stat-cell"><p class="stat-big">🗺️</p><p class="stat-small">Live court map</p></div>
+    <div class="stat-cell"><p class="stat-big">📊</p><p class="stat-small">Score tracking</p></div>
+    <div class="stat-cell"><p class="stat-big">⭐</p><p class="stat-small">Skill matching</p></div>
+  </div>
+</div>
+
+<div class="cs-section reveal" style="background:var(--white)">
+  <p class="sec-label">Key Features</p>
+  <h2 class="sec-title">Four problems, four solutions</h2>
+  <div class="feats">
+    <div class="feat"><p class="feat-icon">🗺️</p><p class="feat-title">Live court map</p><p class="feat-desc">Basketball pins across the city show every court. Tap any pin to see active rallies, court type, recent game history, and crowd reports in real time.</p></div>
+    <div class="feat"><p class="feat-icon">🎯</p><p class="feat-title">Smart filters</p><p class="feat-desc">Filter by court type (full/half), minimum number of courts, max distance, and "Near My Level" — a toggle that hides rallies outside your skill tier.</p></div>
+    <div class="feat"><p class="feat-icon">⚡</p><p class="feat-title">Rally hosting + joining</p><p class="feat-desc">Host a 1v1 or team rally at any court. Players nearby see open spots and join instantly. Get a push notification the moment someone joins your game.</p></div>
+    <div class="feat"><p class="feat-icon">📈</p><p class="feat-title">Score tracking + history</p><p class="feat-desc">Log final scores with team A/B assignment per player. View win/loss history and stats like games played, wins, and best streak on your player profile.</p></div>
+  </div>
+</div>
+
+<div class="cs-section reveal">
+  <p class="sec-label">Screens</p>
+  <h2 class="sec-title">The app, screen by screen</h2>
+  <div class="screens">
+    <div class="screen"><div class="screen-img"><img src="IMG_2647.PNG" alt="Map view"></div><div class="screen-info"><p class="screen-title">Court Map</p><p class="screen-desc">Full-city view of every basketball court. Orange pins indicate courts. Blue dot is the user's location.</p></div></div>
+    <div class="screen"><div class="screen-img"><img src="IMG_2646.PNG" alt="Filters"></div><div class="screen-info"><p class="screen-title">Filters Panel</p><p class="screen-desc">Court type, min count, max distance slider, and skill-tier toggle — with a persistent Done CTA.</p></div></div>
+    <div class="screen"><div class="screen-img"><img src="IMG_2645.PNG" alt="Court detail"></div><div class="screen-info"><p class="screen-title">Court Detail</p><p class="screen-desc">Park name, court info, active rallies with spots remaining, and recent rally history with scores.</p></div></div>
+    <div class="screen"><div class="screen-img"><img src="IMG_2643.PNG" alt="Score entry"></div><div class="screen-info"><p class="screen-title">Final Score Entry</p><p class="screen-desc">Log scores with team A/B assignment per player. Designed for fast courtside entry.</p></div></div>
+    <div class="screen"><div class="screen-img"><img src="IMG_2648.PNG" alt="Player profile"></div><div class="screen-info"><p class="screen-title">Player Profile</p><p class="screen-desc">Games played, wins, best streak, skill badge, and full recent rally log with results.</p></div></div>
+    <div class="screen"><div class="screen-img"><img src="IMG_2642.PNG" alt="Notification"></div><div class="screen-info"><p class="screen-title">Live Notification</p><p class="screen-desc">"Jordan t joined your game at Cal Anderson Park" — real-time push so hosts know their court is filling.</p></div></div>
+  </div>
+</div>
+
+<div class="cs-section reveal" style="background:var(--white)">
+  <p class="sec-label">Design Decisions</p>
+  <h2 class="sec-title">Why each choice was made</h2>
+  <div class="steps">
+    <div class="step"><div class="step-n">1</div><div><p class="step-title">Map-first, not feed-first</p><p class="step-text">Most social apps default to a feed. Hoopr opens straight to the map because pickup basketball is inherently location-driven. Seeing courts near you immediately answers the core question: "Where can I play right now?" A feed would add a navigation layer before answering that.</p></div></div>
+    <div class="step"><div class="step-n">2</div><div><p class="step-title">"Near My Level" toggle — not a public rating</p><p class="step-text">Skill matching is sensitive. Rather than showing a public skill rating on every rally, a simple toggle lets players opt into seeing only appropriate games. This reduces friction for beginners who might feel excluded, while giving experienced players a clean filtered view.</p></div></div>
+    <div class="step"><div class="step-n">3</div><div><p class="step-title">Score entry designed for courtside use</p><p class="step-text">The final score screen uses a large numeric input — not a spinner or +/− counter — because players log scores in sweaty, hurried conditions. Team A/B assignment via tap buttons instead of dropdowns keeps it fast. The goal was sub-10-second score entry.</p></div></div>
+    <div class="step"><div class="step-n">4</div><div><p class="step-title">Notification copy as social proof</p><p class="step-text">"Jordan t joined your game at Cal Anderson Park" uses the player's name and the specific court — not a generic "Someone joined." Specificity makes the notification feel alive and builds community identity around the courts themselves.</p></div></div>
+  </div>
+</div>
+
+<div class="cs-section reveal">
+  <p class="sec-label">Key Insights</p>
+  <h2 class="sec-title">What I learned building this</h2>
+  <div class="insights">
+    <div class="insight"><p class="insight-q">On real-time features</p><p class="insight-text">Live data (who's at the court right now) is the hardest and most valuable feature to get right. Stale data is worse than no data — it breaks trust with the core promise of the app.</p></div>
+    <div class="insight"><p class="insight-q">On community &amp; safety</p><p class="insight-text">Early testing showed players wanted to know who they were playing with before committing to a rally. The profile page and recent rally history provide social proof without requiring a formal review system.</p></div>
+    <div class="insight"><p class="insight-q">On filter design</p><p class="insight-text">The filters panel originally had 6+ options. Reducing to 4 cut decision time significantly — every removed filter is a decision the user doesn't have to make.</p></div>
+    <div class="insight"><p class="insight-q">On PM → designer mindset</p><p class="insight-text">Building Hoopr end-to-end forced me to move between "what should this do" and "how should this feel" constantly — exactly the overlap where I do my best work.</p></div>
+  </div>
+</div>
+
+<div class="cs-section reveal" style="background:var(--white)">
+  <p class="sec-label">Outcome</p>
+  <h2 class="sec-title">A fully designed, functional prototype</h2>
+  <p class="body-text">Hoopr is a fully functional iOS prototype built end-to-end — not just mockups. Real users have tested rally hosting, score logging, and court discovery flows. Currently in active development toward a public launch.</p>
+  <div class="outcome">
+    <div class="oc"><p class="oc-n">Built</p><p class="oc-l">Working iOS prototype</p></div>
+    <div class="oc"><p class="oc-n">4</p><p class="oc-l">Core screens shipped</p></div>
+    <div class="oc"><p class="oc-n">Tested</p><p class="oc-l">With real users &amp; courts</p></div>
+  </div>
+</div>
+
+<div class="cs-nav">
+  <a class="cs-nav-link" href="meta-project.html"><span>← Previous</span><span class="cs-nav-title">Meta Internal Pages</span></a>
+  <a class="cs-nav-link" style="text-align:right" href="bvcc-project.html"><span>Next →</span><span class="cs-nav-title">BeWell Buddy</span></a>
+</div>
+
+<script>
+var io=new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting){x.target.classList.add('visible');io.unobserve(x.target)}})},{threshold:.1,rootMargin:'0px 0px -30px 0px'});
+document.querySelectorAll('.reveal').forEach(function(el){io.observe(el)});
+</script>
+</body>
+</html>
