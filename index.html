@@ -133,6 +133,71 @@ footer{padding:1.75rem 3rem;display:flex;justify-content:space-between;align-ite
   .nav-links{gap:.75rem !important}
   .nav-links a{font-size:.6rem !important;letter-spacing:.02em !important}
 }
+
+/* HAMBURGER MENU - MOBILE */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 4px;
+  z-index: 200;
+}
+.hamburger span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--ink);
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+.hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.hamburger.open span:nth-child(2) { opacity: 0; }
+.hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+.mobile-menu {
+  display: none;
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(244,247,242,0.98);
+  backdrop-filter: blur(16px);
+  z-index: 150;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2.5rem;
+}
+.mobile-menu.open { display: flex; }
+.mobile-menu a {
+  font-size: 1.5rem;
+  color: var(--ink);
+  text-decoration: none;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-family: var(--serif);
+  transition: color 0.2s;
+}
+.mobile-menu a:hover { color: var(--accent); }
+.mobile-menu-close {
+  position: absolute;
+  top: 1.5rem; right: 1.5rem;
+  background: none; border: none;
+  font-size: 1.5rem; cursor: pointer;
+  color: var(--ink3);
+}
+@media (max-width: 768px) {
+  .hamburger { display: flex; }
+  .nav-links { display: none !important; }
+  .nav-back {
+    font-size: 0.75rem !important;
+    white-space: nowrap;
+    max-width: 140px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -146,7 +211,16 @@ footer{padding:1.75rem 3rem;display:flex;justify-content:space-between;align-ite
     <li><a href="resume.html">Resume</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
+  <button class="hamburger" id="hamburger-btn" aria-label="Menu"><span></span><span></span><span></span></button>
 </nav>
+
+<div class="mobile-menu" id="mobile-menu">
+  <button class="mobile-menu-close" id="mobile-menu-close">✕</button>
+  <a href="#work">Work</a>
+  <a href="#about">About</a>
+  <a href="resume.html">Resume</a>
+  <a href="#contact">Contact</a>
+</div>
 <div class="hero" id="home">
   <p class="eyebrow">UX Design &middot; Product Management</p>
   <h1 class="hero-name">Autumn<br><em>Grayson</em></h1>
@@ -192,7 +266,7 @@ footer{padding:1.75rem 3rem;display:flex;justify-content:space-between;align-ite
     </a>
     <a class="pcard flip reveal" href="bvcc-project.html">
       <div class="pinfo">
-        <div class="pmeta"><span class="pnum">02</span><span class="pco">BVCC &middot; 2024</span></div>
+        <div class="pmeta"><span class="pnum">02</span><span class="pco">BVCC &middot; 2025</span></div>
         <h3 class="ptitle">BeWell Buddy, Student Mental Wellness App</h3>
         <p class="pdesc">End-to-end UX design for a student mental health platform, from low-fi sketches to high-fidelity prototypes with moderated discussion boards and an AI chatbot onboarding flow.</p>
         <div class="ptags"><span class="ptag">UX Research</span><span class="ptag">Wireframing</span><span class="ptag">Prototyping</span><span class="ptag">User Testing</span></div>
@@ -277,5 +351,34 @@ footer{padding:1.75rem 3rem;display:flex;justify-content:space-between;align-ite
   document.querySelectorAll('.reveal').forEach(function(el){io.observe(el)});
 })();
 </script>
+
+<script>
+(function() {
+  var btn = document.getElementById('hamburger-btn');
+  var menu = document.getElementById('mobile-menu');
+  var closeBtn = document.getElementById('mobile-menu-close');
+  if (!btn || !menu) return;
+  btn.addEventListener('click', function() {
+    btn.classList.toggle('open');
+    menu.classList.toggle('open');
+    document.body.style.overflow = menu.classList.contains('open') ? 'hidden' : '';
+  });
+  if (closeBtn) {
+    closeBtn.addEventListener('click', function() {
+      btn.classList.remove('open');
+      menu.classList.remove('open');
+      document.body.style.overflow = '';
+    });
+  }
+  menu.querySelectorAll('a').forEach(function(a) {
+    a.addEventListener('click', function() {
+      btn.classList.remove('open');
+      menu.classList.remove('open');
+      document.body.style.overflow = '';
+    });
+  });
+})();
+</script>
+
 </body>
 </html>
