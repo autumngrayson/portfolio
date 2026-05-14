@@ -156,43 +156,101 @@ footer{padding:1.75rem 3rem;display:flex;justify-content:space-between;align-ite
 .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
 .hamburger.open span:nth-child(2) { opacity: 0; }
 .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* SLIDE-IN DRAWER */
 .mobile-menu {
   display: none;
   position: fixed;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background: rgba(244,247,242,0.98);
-  backdrop-filter: blur(16px);
+  top: 0; right: 0; bottom: 0;
+  width: 80%;
+  max-width: 320px;
+  background: var(--white, #fff);
   z-index: 150;
   flex-direction: column;
+  transform: translateX(100%);
+  transition: transform 0.3s ease;
+  box-shadow: -4px 0 32px rgba(0,0,0,0.12);
+}
+.mobile-menu.open {
+  display: flex;
+  transform: translateX(0);
+}
+.mobile-menu-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.3);
+  z-index: 140;
+  backdrop-filter: blur(2px);
+}
+.mobile-menu-overlay.open { display: block; }
+
+/* DRAWER HEADER */
+.mobile-menu-header {
+  background: #1C2E18;
+  padding: 2.5rem 1.5rem 1.5rem;
+  display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 2.5rem;
+  justify-content: space-between;
 }
-.mobile-menu.open { display: flex; }
-.mobile-menu a {
-  font-size: 1.5rem;
-  color: var(--ink);
-  text-decoration: none;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  font-family: var(--serif);
-  transition: color 0.2s;
+.mobile-menu-name {
+  font-family: var(--serif, serif);
+  font-size: 1.3rem;
+  color: #fff;
+  letter-spacing: -0.01em;
 }
-.mobile-menu a:hover { color: var(--accent); }
 .mobile-menu-close {
-  position: absolute;
-  top: 1.5rem; right: 1.5rem;
-  background: none; border: none;
-  font-size: 1.5rem; cursor: pointer;
-  color: var(--ink3);
+  background: rgba(255,255,255,0.15);
+  border: none;
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  color: rgba(255,255,255,0.8);
+  font-size: 1rem;
+  transition: background 0.2s;
 }
+.mobile-menu-close:hover { background: rgba(255,255,255,0.25); }
+
+/* DRAWER LINKS */
+.mobile-menu-links {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 0.75rem 0;
+  overflow-y: auto;
+}
+.mobile-menu-links a {
+  display: flex;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  font-size: 0.9375rem;
+  color: var(--ink, #141710);
+  text-decoration: none;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  border-bottom: 1px solid rgba(28,33,24,0.07);
+  transition: background 0.15s, color 0.15s;
+  gap: 0.875rem;
+}
+.mobile-menu-links a:hover {
+  background: #F0F5EE;
+  color: #2C5325;
+}
+.mobile-menu-links a .link-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: #B8D4B2;
+  flex-shrink: 0;
+}
+
 @media (max-width: 768px) {
   .hamburger { display: flex; }
   .nav-links { display: none !important; }
   .nav-back {
     font-size: 0.75rem !important;
     white-space: nowrap;
-    max-width: 140px;
+    max-width: 150px;
     overflow: hidden;
     text-overflow: ellipsis;
   }
@@ -214,12 +272,18 @@ footer{padding:1.75rem 3rem;display:flex;justify-content:space-between;align-ite
   <button class="hamburger" id="hamburger-btn" aria-label="Menu"><span></span><span></span><span></span></button>
 </nav>
 
+<div class="mobile-menu-overlay" id="mobile-menu-overlay"></div>
 <div class="mobile-menu" id="mobile-menu">
-  <button class="mobile-menu-close" id="mobile-menu-close">✕</button>
-  <a href="#work">Work</a>
-  <a href="#about">About</a>
-  <a href="resume.html">Resume</a>
-  <a href="#contact">Contact</a>
+  <div class="mobile-menu-header">
+    <span class="mobile-menu-name">Autumn Grayson</span>
+    <button class="mobile-menu-close" id="mobile-menu-close">✕</button>
+  </div>
+  <div class="mobile-menu-links">
+    <a href="#work"><span class="link-dot"></span>Work</a>
+    <a href="#about"><span class="link-dot"></span>About</a>
+    <a href="resume.html"><span class="link-dot"></span>Resume</a>
+    <a href="#contact"><span class="link-dot"></span>Contact</a>
+  </div>
 </div>
 <div class="hero" id="home">
   <p class="eyebrow">UX Design &middot; Product Management</p>
@@ -351,34 +415,33 @@ footer{padding:1.75rem 3rem;display:flex;justify-content:space-between;align-ite
   document.querySelectorAll('.reveal').forEach(function(el){io.observe(el)});
 })();
 </script>
-
 <script>
 (function() {
   var btn = document.getElementById('hamburger-btn');
   var menu = document.getElementById('mobile-menu');
+  var overlay = document.getElementById('mobile-menu-overlay');
   var closeBtn = document.getElementById('mobile-menu-close');
-  if (!btn || !menu) return;
-  btn.addEventListener('click', function() {
-    btn.classList.toggle('open');
-    menu.classList.toggle('open');
-    document.body.style.overflow = menu.classList.contains('open') ? 'hidden' : '';
-  });
-  if (closeBtn) {
-    closeBtn.addEventListener('click', function() {
-      btn.classList.remove('open');
-      menu.classList.remove('open');
-      document.body.style.overflow = '';
+  function openMenu() {
+    btn.classList.add('open');
+    menu.classList.add('open');
+    if (overlay) overlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeMenu() {
+    btn.classList.remove('open');
+    menu.classList.remove('open');
+    if (overlay) overlay.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  if (btn) btn.addEventListener('click', openMenu);
+  if (closeBtn) closeBtn.addEventListener('click', closeMenu);
+  if (overlay) overlay.addEventListener('click', closeMenu);
+  if (menu) {
+    menu.querySelectorAll('a').forEach(function(a) {
+      a.addEventListener('click', closeMenu);
     });
   }
-  menu.querySelectorAll('a').forEach(function(a) {
-    a.addEventListener('click', function() {
-      btn.classList.remove('open');
-      menu.classList.remove('open');
-      document.body.style.overflow = '';
-    });
-  });
 })();
 </script>
-
 </body>
 </html>
