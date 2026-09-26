@@ -317,6 +317,18 @@ a{color:inherit}
 .lap .base::before{content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);width:13%;height:45%;background:#C9C9CE;border-radius:0 0 6px 6px}
 .wa-hero .lap-stage{box-shadow:none}
 @media (max-width:640px){.lap-stage{border-radius:12px;padding:6% 3% 5%}.lap{width:92%}.lap .base{width:108%;margin-left:-4%}}
+
+/* hero: playful background in Web Art's own colors */
+.wa-hero .lap-stage.fun{position:relative;overflow:hidden;border:0;background:#FBF2DC;padding:7% 6% 6.5%}
+.fun .blob{position:absolute;border-radius:50%;pointer-events:none}
+.fun .b1{width:34%;aspect-ratio:1;left:-9%;top:-22%;background:#E0BE48}
+.fun .b2{width:44%;aspect-ratio:1;right:-13%;bottom:-38%;background:#78A6B8}
+.fun .b3{width:17%;aspect-ratio:1;right:5%;top:-7%;background:#D1664F}
+.fun .b4{width:9%;aspect-ratio:1;left:4%;bottom:10%;background:#D1664F}
+.fun .b5{width:3.2%;aspect-ratio:1;left:15%;bottom:36%;background:#2A263E}
+.fun .b6{width:4.5%;aspect-ratio:1;right:22%;top:9%;background:#78A6B8}
+.fun .b7{width:2.4%;aspect-ratio:1;right:4%;top:47%;background:#E0BE48}
+.fun .lap{position:relative;z-index:1;filter:drop-shadow(0 24px 30px rgba(42,38,62,.28))}
 </style>
 </head>
 <body>
@@ -325,7 +337,7 @@ a{color:inherit}
 
 <div class="wa-back"><a class="back" href="index.html#work">Back to all work</a></div>
 <figure class="wide wa-hero fade-up">
-  <div class="lap-stage"><div class="lap"><div class="bezel"><div class="screen"><img src="wa-hero.webp" width="1600" height="873" alt="The Web Art home page, with the headline Where design meets technology, a Start the course button, and cards for The Course, Web Design Studio, and Component Lab."></div></div><div class="base"></div></div></div>
+  <div class="lap-stage fun"><span class="blob b1"></span><span class="blob b2"></span><span class="blob b3"></span><span class="blob b4"></span><span class="blob b5"></span><span class="blob b6"></span><span class="blob b7"></span><div class="lap"><div class="bezel"><div class="screen"><img src="wa-hero.webp" width="1600" height="873" alt="The Web Art home page, with the headline Where design meets technology, a Start the course button, and cards for The Course, Web Design Studio, and Component Lab."></div></div><div class="base"></div></div></div>
 </figure>
 
 <div class="wa-head">
@@ -338,7 +350,7 @@ a{color:inherit}
 
 <section class="sec" id="overview">
   <p class="kicker">Overview</p>
-  <p>A design studio that teaches middle school students UX, built for Tech Access Foundation to use in its classrooms. I defined what the app is for, drafted the ten-week curriculum, set the privacy and device constraints, wrote the copy students see, and directed the build.</p>
+  <p>A design studio that teaches middle school students UX, built for Tech Access Foundation classrooms. I defined the product, drafted the ten-week curriculum, and directed the build.</p>
   <div class="meta">
     <div><p class="k">Role</p><p class="v">Product Lead</p></div>
     <div><p class="k">Audience</p><p class="v">Middle school students</p></div>
@@ -351,113 +363,102 @@ a{color:inherit}
   <p class="kicker">The problem</p>
   <h2 class="statement">There was no kid-friendly tool that taught UX.</h2>
   <p class="question">How can we teach middle school students UX in a tool that is easy to use, explains itself, and doesn't rely on AI?</p>
-  <p>Tech Access Foundation wanted something that would teach kids to design for the web. We couldn't find a kid-friendly environment that taught UX specifically, meaning one that was easy to use, explained what students were doing, and didn't rely on AI. Figma, Canva, and Wix were options, but none of them solved that problem.</p>
-  <p>Tools like these focus on visual craft, such as layout, color, and contrast. They don't give students a user, a goal, or a task, so a student can build a page that looks great and is impossible to use without ever finding out. Closing that gap is what this project is about.</p>
+  <p>Figma, Canva, and Wix teach visual craft. None of them give students a user, a goal, or a task, so a page can look great and still be impossible to use.</p>
 </section>
 
 <section class="sec" id="idea">
   <p class="kicker">The key idea</p>
   <h2>Every project starts with a person</h2>
-  <p>The obvious fix was more design rules: bigger text, better contrast, more feedback. I didn't think that would work. Kids design for themselves. They pick their favorite colors and a text size their own eyes can read, and a rule like "use bigger text" gets followed once and forgotten. The core idea in UX is that you are not your user, and most of the other lessons depend on it.</p>
-  <p>So instead of adding rules, each project starts with a brief about a fictional person with a specific need, and the student designs for that person. That person isn't a guide or a mascot. They're the audience the student is designing for, and each project has a different one.</p>
-  <p>Work is checked in two ways. The app automatically checks what it can measure, like text size, contrast, and position. For everything else, it asks the student to decide, with questions like "Would this person understand this word?"</p>
+  <p>Kids design for themselves, so more rules don't stick. Instead, each project starts with a brief about a fictional person with a specific need, and students design for them.</p>
+  <p>The app checks what it can measure, like size and contrast. For everything else, it asks the student to decide.</p>
 </section>
 <div class="wide checks">
   <figure>
     <div class="frame"><img src="wa-tip.webp" width="472" height="602" loading="lazy" alt="The Inspector's Design tips box reading: There's no H1 yet. Most pages start with one big heading before smaller ones."></div>
-    <figcaption><b>Checked by the app</b>The Inspector notices when a page has no main heading.</figcaption>
+    <figcaption><b>Checked by the app</b>A missing main heading</figcaption>
   </figure>
   <figure>
     <div class="frame"><img src="wa-contrast.webp" width="1364" height="572" loading="lazy" alt="A dark dotted button in Component Lab with a note below: This color combo may be hard to read. Try a bigger difference between the text and background brightness."></div>
-    <figcaption><b>Checked by the app</b>Component Lab flags text that will be hard to read, using real WCAG contrast ratios.</figcaption>
+    <figcaption><b>Checked by the app</b>Text that's hard to read</figcaption>
   </figure>
   <figure>
     <div class="frame"><img src="wa-checklist.webp" width="562" height="546" loading="lazy" alt="The Week 5 checklist, fully checked: My color choices make sense, There are no contrast warnings left on my page, I can explain why I chose my colors."></div>
-    <figcaption><b>Decided by the student</b>Each week ends with a checklist that asks students to judge their own work.</figcaption>
+    <figcaption><b>Decided by the student</b>The weekly checklist</figcaption>
   </figure>
 </div>
 
 <section class="sec" id="classroom">
   <p class="kicker">The classroom</p>
-  <h2>Planning for how sessions actually run</h2>
-  <p>I built the curriculum around the real classroom setup and schedule.</p>
+  <h2>Built for how sessions actually run</h2>
   <div class="cards">
-    <div class="card"><p class="n">01</p><h3>Forty minutes of work per session</h3><p>Sessions are an hour, but with 7th graders, arriving, logging in, settling down, and packing up leave about 35 to 45 minutes of work. Each of the ten weekly plans is built for forty minutes, shows how the time is split, and marks a section to drop if things run long.</p></div>
-    <div class="card"><p class="n">02</p><h3>Guest volunteers from my network</h3><p>I bring in people from my professional network who work in different tech roles, so students meet professionals with a range of skill sets and see the different kinds of work that go into building a product.</p></div>
+    <div class="card"><p class="n">01</p><h3>Forty-minute lessons</h3><p>Hour-long sessions leave about forty minutes of real work, so every weekly plan fits that and marks what to drop.</p></div>
+    <div class="card"><p class="n">02</p><h3>Guest volunteers</h3><p>I bring in people from my network in different tech roles, so students see the range of work behind a product.</p></div>
     <!-- TO STRENGTHEN: name the kinds of roles volunteers have come from (for example engineering, UX research, product), how many, and what they did with students. -->
-    <div class="card"><p class="n">03</p><h3>Build first, explain later</h3><p>Students make a real page in week one, before they've learned anything. After that, each concept is taught as the fix for a problem they've already run into. Wireframing makes sense to a 12-year-old with a messy page to fix, and it's much harder to explain to one who has never made a page.</p></div>
-    <div class="card"><p class="n">04</p><h3>Shared Chromebooks and no logins</h3><p>That's the classroom setup, so the app has no accounts, and students save work by exporting a project.</p></div>
+    <div class="card"><p class="n">03</p><h3>Build first, explain later</h3><p>Students make a page in week one. Each lesson after that fixes a problem they've already hit.</p></div>
+    <div class="card"><p class="n">04</p><h3>Shared Chromebooks, no logins</h3><p>No accounts. Students save their work by exporting a project.</p></div>
   </div>
 </section>
 
 <section class="sec" id="privacy">
   <p class="kicker">Privacy</p>
-  <h2>Keeping student work on the device</h2>
-  <p>All student work is stored on the student's own device. The app doesn't collect anything, and nothing leaves the browser.</p>
-  <p>Storing a child's name on a server would bring COPPA into scope, which means verifiable parental consent, a privacy policy, deletion handling, and legal review. Keeping everything on the device avoids almost all of that and lets the app run for free as a static site, which matters on a nonprofit budget.</p>
-  <p>I wrote down the tradeoffs and accepted them. Work doesn't sync across devices, clearing browser data erases it, and storage is capped at about 5MB. Accounts and cloud sync only make sense if a pilot shows the product is worth that cost. Until then, the app tells students plainly where their work lives.</p>
+  <h2>Student work stays on the device</h2>
+  <p>Nothing leaves the browser. That keeps the app out of COPPA's consent and legal requirements and lets it run free as a static site. The tradeoff is no syncing between devices, which I accepted until a pilot proves accounts are worth it.</p>
   <div class="quote"><p>"Your profile is saved on this device."</p><cite>What the Account screen says</cite></div>
 </section>
 
 <section class="sec" id="built">
   <p class="kicker">Walkthrough</p>
   <h2>Four studios and a course</h2>
-  <p>Each part of the app, recorded in use.</p>
 </section>
 
 <div class="step">
   <p class="n">01</p>
   <h3>The Course</h3>
-  <p>Ten weekly lessons shown as an in-app slideshow. Each week introduces a few new words, one idea to understand, and a short list of what to do, then sends students into the studio to try it.</p>
+  <p>Ten weekly lessons as an in-app slideshow, each ending with a task to try in the studio.</p>
 </div>
   <figure class="wide clip">
     <div class="lap-stage"><div class="lap"><div class="bezel"><div class="screen"><video class="wa-v" muted loop playsinline preload="none" width="1600" height="872" poster="wa-course.webp" aria-label="Clicking through The Course: Week 1 slides, then Week 4 on design principles, then Week 5 on color and readable text."><source src="wa-course.mp4" type="video/mp4"><source src="wa-course.webm" type="video/webm"></video></div></div><div class="base"></div></div></div>
-    <figcaption>Weeks 1, 4, and 5 of the course</figcaption>
   </figure>
 
 <div class="step">
   <p class="n">02</p>
   <h3>Web Design Studio</h3>
-  <p>A drag-and-drop page builder on a 12-column grid. Students drop blocks onto the page, place them side by side, and edit each one in the Inspector, which shows design tips as they work. The studio writes the HTML and CSS behind the page as they go.</p>
+  <p>A drag-and-drop page builder on a 12-column grid, with design tips in the Inspector as students work.</p>
 </div>
   <figure class="wide clip">
     <div class="lap-stage"><div class="lap"><div class="bezel"><div class="screen"><video class="wa-v" muted loop playsinline preload="none" width="1600" height="872" poster="wa-studio.webp" aria-label="Building a page in Web Design Studio: adding a heading and menu, then a card, an image, and a quote side by side."><source src="wa-studio.mp4" type="video/mp4"><source src="wa-studio.webm" type="video/webm"></video></div></div><div class="base"></div></div></div>
-    <figcaption>Adding a heading, a menu, and cards with an image and a quote</figcaption>
   </figure>
 
 <div class="step">
   <p class="n">03</p>
   <h3>Component Lab</h3>
-  <p>Five workspaces for buttons, badges, pop-ups, cards, and form fields. Students mix a style, colors, and text, or start from an example. A short note under each preview explains the technique, and a warning appears if the colors are hard to read.</p>
+  <p>Workspaces for buttons, badges, pop-ups, cards, and form fields, with a warning when colors are hard to read.</p>
 </div>
   <figure class="wide clip">
     <div class="lap-stage"><div class="lap"><div class="bezel"><div class="screen"><video class="wa-v" muted loop playsinline preload="none" width="1600" height="872" poster="wa-lab.webp" aria-label="Customizing a button in Component Lab with different backgrounds, colors, and shapes, then switching between the Badges, Pop-ups, Cards, and Form Fields tabs."><source src="wa-lab.mp4" type="video/mp4"><source src="wa-lab.webm" type="video/webm"></video></div></div><div class="base"></div></div></div>
-    <figcaption>Styling a button, then touring the other four workspaces</figcaption>
   </figure>
 
 <div class="step">
   <p class="n">04</p>
   <h3>Bug Blocks</h3>
-  <p>Visual block coding, similar to Scratch. Students stack motion, looks, and control blocks into a script, press Run, and watch the bug on the stage follow it.</p>
+  <p>Scratch-style block coding. Students build a script, press Run, and watch the bug follow it.</p>
 </div>
   <figure class="wide clip">
     <div class="lap-stage"><div class="lap"><div class="bezel"><div class="screen"><video class="wa-v" muted loop playsinline preload="none" width="1600" height="548" poster="wa-bugs.webp" aria-label="Stacking blocks in Bug Blocks, including a say block and a repeat loop, then pressing Run as the bug moves across the stage and says Hello Portfolio."><source src="wa-bugs.mp4" type="video/mp4"><source src="wa-bugs.webm" type="video/webm"></video></div></div><div class="base"></div></div></div>
-    <figcaption>Building a short script and running it</figcaption>
   </figure>
 
 <section class="sec tight" id="hood">
   <p class="kicker">Under the hood</p>
-  <p>The project started as a single 4,842-line prototype. Before adding anything new, I had it split into 31 modules, confirmed it behaved the same as before, and moved it into a Vite project under version control. Adding features to a prototype that couldn't be changed safely would have been wasted work.</p>
+  <p>Before adding features, I had the 4,842-line prototype split into 31 modules and moved into a Vite project under version control.</p>
 </section>
 
 <section class="sec" id="status">
   <p class="kicker">Where it stands</p>
-  <h2>Private preview and curriculum review</h2>
-  <p>The app is deployed as a private preview for Tech Access Foundation's feedback, with search indexing turned off. The curriculum is a draft, marked as not final, and is being reviewed by the organization's curriculum specialist. I've left open where the design briefs fit alongside the existing starter templates, because that's a curriculum decision for them to make.</p>
-  <p>I documented two known issues before anyone else ran into them.</p>
+  <h2>Private preview, curriculum in review</h2>
+  <p>Tech Access Foundation's curriculum specialist is reviewing the draft. Two known issues:</p>
   <ul>
-    <li><strong>Drag-and-drop doesn't work on touchscreens.</strong> The HTML5 drag API doesn't respond to touch, so the app only works on laptops and Chromebooks until dragging is rebuilt with pointer events. Dragging is the main interaction, so this blocks any use on tablets.</li>
-    <li><strong>Phone screens are cramped.</strong> I tested four screen sizes. Laptops and Chromebooks work well. On phones the canvas gets cut off, but the app still works.</li>
+    <li><strong>No touchscreen drag-and-drop yet,</strong> so it runs on laptops and Chromebooks, not tablets.</li>
+    <li><strong>Phones are cramped.</strong> The app works, but the canvas gets cut off.</li>
   </ul>
   <!-- TO STRENGTHEN: add the classroom pilot date once it's set. -->
 </section>
@@ -466,8 +467,8 @@ a{color:inherit}
   <p class="kicker">Takeaways</p>
   <h2>What I'd keep and what I'd change</h2>
   <div class="cards">
-    <div class="card"><h3>Keep: data stays on the device</h3><p>It ruled out sync, teacher dashboards, and saved accounts, but it means the nonprofit can put the app in front of students this term without a legal review first. Many of the good decisions on this project were about what to hold off on building.</p></div>
-    <div class="card"><h3>Change: check the hardware first</h3><p>I found the touch problem late, during a screen-size audit, and it limits where the app can be used more than any feature I added. Next time, I'll confirm the target hardware before designing the interaction model.</p></div>
+    <div class="card"><h3>Keep: data on the device</h3><p>It ruled out some features, but it let the nonprofit put the app in front of students without a legal review first.</p></div>
+    <div class="card"><h3>Change: check the hardware first</h3><p>I found the touch problem late. Next time I'll confirm the devices before designing the interaction.</p></div>
   </div>
 </section>
 
