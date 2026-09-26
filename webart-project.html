@@ -242,7 +242,7 @@ a{color:inherit}
 .wide{max-width:calc(1080px + 3rem);margin-left:auto;margin-right:auto;padding-left:1.5rem;padding-right:1.5rem}
 .frame{border:1px solid var(--line);border-radius:16px;overflow:hidden;background:#F4F4F6}
 .frame img,.frame video{display:block;width:100%;height:auto}
-.wa-hero .frame{box-shadow:0 30px 60px -40px rgba(27,27,31,.35)}
+
 .wa-head{max-width:calc(var(--col) + 3rem);margin:0 auto;padding:3rem 1.5rem 0}
 .wa-head h1{font-family:var(--serif);font-weight:400;font-size:clamp(2rem,5vw,2.9rem);line-height:1.12;letter-spacing:-.01em;text-wrap:balance}
 .eyebrow{font-size:.9375rem;color:var(--ink-3);margin-bottom:.75rem}
@@ -305,6 +305,18 @@ a{color:inherit}
   .frame{border-radius:12px}
   .sec{padding-top:3.5rem}
 }
+
+/* laptop frame, matches the homepage tiles */
+.lap-stage{background:#F4F4F6;border:1px solid var(--line);border-radius:16px;padding:4.5% 3% 4%}
+.lap{width:91%;margin:0 auto}
+.lap .bezel{position:relative;background:#16161A;border-radius:clamp(8px,1.3vw,14px) clamp(8px,1.3vw,14px) 4px 4px;padding:clamp(8px,1.3vw,14px) clamp(6px,.9vw,10px) clamp(6px,.9vw,10px)}
+.lap .bezel::before{content:"";position:absolute;top:clamp(2px,.45vw,5px);left:50%;transform:translateX(-50%);width:clamp(4px,.5vw,6px);height:clamp(4px,.5vw,6px);border-radius:50%;background:#3A3A42}
+.lap .screen{border-radius:3px;overflow:hidden;background:#fff}
+.lap .screen img,.lap .screen video{display:block;width:100%;height:auto}
+.lap .base{position:relative;width:108%;margin-left:-4%;height:clamp(7px,1.15vw,14px);background:linear-gradient(#E6E6EA,#B4B4BA);border-radius:0 0 50% 50%/0 0 100% 100%}
+.lap .base::before{content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);width:13%;height:45%;background:#C9C9CE;border-radius:0 0 6px 6px}
+.wa-hero .lap-stage{box-shadow:none}
+@media (max-width:640px){.lap-stage{border-radius:12px;padding:6% 3% 5%}.lap{width:92%}.lap .base{width:108%;margin-left:-4%}}
 </style>
 </head>
 <body>
@@ -313,7 +325,7 @@ a{color:inherit}
 
 <div class="wa-back"><a class="back" href="index.html#work">Back to all work</a></div>
 <figure class="wide wa-hero fade-up">
-  <div class="frame"><img src="wa-hero.webp" width="1600" height="873" alt="The Web Art home page, with the headline Where design meets technology, a Start the course button, and cards for The Course, Web Design Studio, and Component Lab."></div>
+  <div class="lap-stage"><div class="lap"><div class="bezel"><div class="screen"><img src="wa-hero.webp" width="1600" height="873" alt="The Web Art home page, with the headline Where design meets technology, a Start the course button, and cards for The Course, Web Design Studio, and Component Lab."></div></div><div class="base"></div></div></div>
 </figure>
 
 <div class="wa-head">
@@ -399,7 +411,7 @@ a{color:inherit}
   <p>Ten weekly lessons shown as an in-app slideshow. Each week introduces a few new words, one idea to understand, and a short list of what to do, then sends students into the studio to try it.</p>
 </div>
   <figure class="wide clip">
-    <div class="frame"><video class="wa-v" muted loop playsinline preload="none" width="1600" height="872" poster="wa-course.webp" aria-label="Clicking through The Course: Week 1 slides, then Week 4 on design principles, then Week 5 on color and readable text."><source src="wa-course.mp4" type="video/mp4"><source src="wa-course.webm" type="video/webm"></video></div>
+    <div class="lap-stage"><div class="lap"><div class="bezel"><div class="screen"><video class="wa-v" muted loop playsinline preload="none" width="1600" height="872" poster="wa-course.webp" aria-label="Clicking through The Course: Week 1 slides, then Week 4 on design principles, then Week 5 on color and readable text."><source src="wa-course.mp4" type="video/mp4"><source src="wa-course.webm" type="video/webm"></video></div></div><div class="base"></div></div></div>
     <figcaption>Weeks 1, 4, and 5 of the course</figcaption>
   </figure>
 
@@ -409,7 +421,7 @@ a{color:inherit}
   <p>A drag-and-drop page builder on a 12-column grid. Students drop blocks onto the page, place them side by side, and edit each one in the Inspector, which shows design tips as they work. The studio writes the HTML and CSS behind the page as they go.</p>
 </div>
   <figure class="wide clip">
-    <div class="frame"><video class="wa-v" muted loop playsinline preload="none" width="1600" height="872" poster="wa-studio.webp" aria-label="Building a page in Web Design Studio: adding a heading and menu, then a card, an image, and a quote side by side."><source src="wa-studio.mp4" type="video/mp4"><source src="wa-studio.webm" type="video/webm"></video></div>
+    <div class="lap-stage"><div class="lap"><div class="bezel"><div class="screen"><video class="wa-v" muted loop playsinline preload="none" width="1600" height="872" poster="wa-studio.webp" aria-label="Building a page in Web Design Studio: adding a heading and menu, then a card, an image, and a quote side by side."><source src="wa-studio.mp4" type="video/mp4"><source src="wa-studio.webm" type="video/webm"></video></div></div><div class="base"></div></div></div>
     <figcaption>Adding a heading, a menu, and cards with an image and a quote</figcaption>
   </figure>
 
@@ -419,7 +431,7 @@ a{color:inherit}
   <p>Five workspaces for buttons, badges, pop-ups, cards, and form fields. Students mix a style, colors, and text, or start from an example. A short note under each preview explains the technique, and a warning appears if the colors are hard to read.</p>
 </div>
   <figure class="wide clip">
-    <div class="frame"><video class="wa-v" muted loop playsinline preload="none" width="1600" height="872" poster="wa-lab.webp" aria-label="Customizing a button in Component Lab with different backgrounds, colors, and shapes, then switching between the Badges, Pop-ups, Cards, and Form Fields tabs."><source src="wa-lab.mp4" type="video/mp4"><source src="wa-lab.webm" type="video/webm"></video></div>
+    <div class="lap-stage"><div class="lap"><div class="bezel"><div class="screen"><video class="wa-v" muted loop playsinline preload="none" width="1600" height="872" poster="wa-lab.webp" aria-label="Customizing a button in Component Lab with different backgrounds, colors, and shapes, then switching between the Badges, Pop-ups, Cards, and Form Fields tabs."><source src="wa-lab.mp4" type="video/mp4"><source src="wa-lab.webm" type="video/webm"></video></div></div><div class="base"></div></div></div>
     <figcaption>Styling a button, then touring the other four workspaces</figcaption>
   </figure>
 
@@ -429,7 +441,7 @@ a{color:inherit}
   <p>Visual block coding, similar to Scratch. Students stack motion, looks, and control blocks into a script, press Run, and watch the bug on the stage follow it.</p>
 </div>
   <figure class="wide clip">
-    <div class="frame"><video class="wa-v" muted loop playsinline preload="none" width="1600" height="548" poster="wa-bugs.webp" aria-label="Stacking blocks in Bug Blocks, including a say block and a repeat loop, then pressing Run as the bug moves across the stage and says Hello Portfolio."><source src="wa-bugs.mp4" type="video/mp4"><source src="wa-bugs.webm" type="video/webm"></video></div>
+    <div class="lap-stage"><div class="lap"><div class="bezel"><div class="screen"><video class="wa-v" muted loop playsinline preload="none" width="1600" height="548" poster="wa-bugs.webp" aria-label="Stacking blocks in Bug Blocks, including a say block and a repeat loop, then pressing Run as the bug moves across the stage and says Hello Portfolio."><source src="wa-bugs.mp4" type="video/mp4"><source src="wa-bugs.webm" type="video/webm"></video></div></div><div class="base"></div></div></div>
     <figcaption>Building a short script and running it</figcaption>
   </figure>
 
