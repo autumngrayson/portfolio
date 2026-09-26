@@ -238,7 +238,7 @@ a{color:inherit}
 @media (max-width:640px){.spec.keep th:last-child,.spec.keep td:last-child{display:table-cell}.spec.keep td:first-child{white-space:normal}}
 
 /* ---------- web art walkthrough layout ---------- */
-.wa-back{max-width:calc(1080px + 3rem);margin:0 auto;padding:clamp(1.5rem,5vh,3rem) 1.5rem 1.25rem}
+.wa-back{max-width:calc(var(--col) + 3rem);margin:0 auto;padding:clamp(1.5rem,5vh,3rem) 1.5rem 1.25rem}
 .wide{max-width:calc(1080px + 3rem);margin-left:auto;margin-right:auto;padding-left:1.5rem;padding-right:1.5rem}
 .frame{border:1px solid var(--line);border-radius:16px;overflow:hidden;background:#F4F4F6}
 .frame img,.frame video{display:block;width:100%;height:auto}
@@ -318,10 +318,10 @@ a{color:inherit}
 .wa-hero .lap-stage{box-shadow:none}
 @media (max-width:640px){.lap-stage{border-radius:12px;padding:6% 3% 5%}.lap{width:92%}.lap .base{width:108%;margin-left:-4%}}
 
-/* hero: illustrated background, same panel size as before */
-.wa-hero .lap-stage.fun{position:relative;overflow:hidden;border:0;padding:0;aspect-ratio:1080/650;display:flex;align-items:center;justify-content:center;background:#78A6B8 url(wa-hero-bg.webp) center/cover no-repeat}
-.fun .lap{width:70%;filter:drop-shadow(0 28px 34px rgba(42,38,62,.45))}
-@media (max-width:640px){.wa-hero .lap-stage.fun{aspect-ratio:4/3}.fun .lap{width:84%}}
+/* hero: full-width painted background, laptop keeps its size */
+.wa-hero.full{max-width:none;padding:0;margin:0}
+.wa-hero .lap-stage.fun{position:relative;overflow:hidden;border:0;border-radius:0;padding:clamp(2.5rem,6vw,4.5rem) 1rem;display:flex;align-items:center;justify-content:center;background:#78A6B8 url(wa-hero-bg.webp) center/cover no-repeat;min-height:clamp(300px,46vw,680px)}
+.fun .lap{width:min(760px,84%);filter:drop-shadow(0 28px 34px rgba(42,38,62,.45))}
 </style>
 </head>
 <body>
@@ -329,7 +329,7 @@ a{color:inherit}
 <main>
 
 <div class="wa-back"><a class="back" href="index.html#work">Back to all work</a></div>
-<figure class="wide wa-hero fade-up">
+<figure class="wa-hero full fade-up">
   <div class="lap-stage fun"><div class="lap"><div class="bezel"><div class="screen"><img src="wa-hero.webp" width="1600" height="873" alt="The Web Art home page, with the headline Where design meets technology, a Start the course button, and cards for The Course, Web Design Studio, and Component Lab."></div></div><div class="base"></div></div></div>
 </figure>
 
@@ -337,7 +337,7 @@ a{color:inherit}
   <p class="eyebrow fade-up d1">Tech Access Foundation · Volunteer Project · Web App</p>
   <h1 class="fade-up d1">Web Art, a design studio for teaching UX</h1>
   <nav class="jump fade-up d2" aria-label="On this page">
-    <a href="#overview">Overview</a><a href="#problem">Problem</a><a href="#idea">Key idea</a><a href="#built">Walkthrough</a><a href="#learned">Takeaways</a>
+    <a href="#overview">Overview</a><a href="#problem">Problem</a><a href="#idea">Key idea</a><a href="#built">Walkthrough</a><a href="#next">Next steps</a>
   </nav>
 </div>
 
@@ -456,16 +456,17 @@ a{color:inherit}
   <!-- TO STRENGTHEN: add the classroom pilot date once it's set. -->
 </section>
 
-<section class="sec" id="learned">
-  <p class="kicker">Takeaways</p>
-  <h2>What I'd keep and what I'd change</h2>
+<section class="sec" id="next">
+  <p class="kicker">Next steps</p>
+  <h2>What comes after the preview</h2>
   <div class="cards">
-    <div class="card"><h3>Keep: data on the device</h3><p>It ruled out some features, but it let the nonprofit put the app in front of students without a legal review first.</p></div>
-    <div class="card"><h3>Change: check the hardware first</h3><p>I found the touch problem late. Next time I'll confirm the devices before designing the interaction.</p></div>
+    <div class="card"><p class="n">01</p><h3>Run the classroom pilot</h3><p>Once the curriculum review wraps up, test all ten weeks with a real class.</p></div>
+    <div class="card"><p class="n">02</p><h3>Support touchscreens</h3><p>Rebuild drag-and-drop with pointer events so the app works on tablets.</p></div>
+    <div class="card"><p class="n">03</p><h3>Place the design briefs</h3><p>Decide with the curriculum specialist how briefs fit alongside the starter templates.</p></div>
+    <div class="card"><p class="n">04</p><h3>Revisit accounts</h3><p>Add sign-in and syncing only if the pilot shows students need them.</p></div>
   </div>
 </section>
 
-<div class="divider"><hr></div>
 </main>
 <section class="next"><p>Next case study</p><a class="u" href="hoopr-project.html">Hoopr, Find Your Next Pickup Run</a></section>
 <footer class="col"><div class="foot"><span>&copy; 2026 Autumn Grayson</span><span><a href="mailto:grayson.autumnnicole@gmail.com">Email</a> &nbsp;&middot;&nbsp; <a href="https://www.linkedin.com/in/autumn-grayson/" target="_blank" rel="noopener">LinkedIn</a></span></div></footer>
