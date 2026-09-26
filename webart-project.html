@@ -318,17 +318,10 @@ a{color:inherit}
 .wa-hero .lap-stage{box-shadow:none}
 @media (max-width:640px){.lap-stage{border-radius:12px;padding:6% 3% 5%}.lap{width:92%}.lap .base{width:108%;margin-left:-4%}}
 
-/* hero: playful background in Web Art's own colors */
-.wa-hero .lap-stage.fun{position:relative;overflow:hidden;border:0;background:#FBF2DC;padding:7% 6% 6.5%}
-.fun .blob{position:absolute;border-radius:50%;pointer-events:none}
-.fun .b1{width:34%;aspect-ratio:1;left:-9%;top:-22%;background:#E0BE48}
-.fun .b2{width:44%;aspect-ratio:1;right:-13%;bottom:-38%;background:#78A6B8}
-.fun .b3{width:17%;aspect-ratio:1;right:5%;top:-7%;background:#D1664F}
-.fun .b4{width:9%;aspect-ratio:1;left:4%;bottom:10%;background:#D1664F}
-.fun .b5{width:3.2%;aspect-ratio:1;left:15%;bottom:36%;background:#2A263E}
-.fun .b6{width:4.5%;aspect-ratio:1;right:22%;top:9%;background:#78A6B8}
-.fun .b7{width:2.4%;aspect-ratio:1;right:4%;top:47%;background:#E0BE48}
-.fun .lap{position:relative;z-index:1;filter:drop-shadow(0 24px 30px rgba(42,38,62,.28))}
+/* hero: illustrated background, same panel size as before */
+.wa-hero .lap-stage.fun{position:relative;overflow:hidden;border:0;padding:0;aspect-ratio:1080/650;display:flex;align-items:center;justify-content:center;background:#78A6B8 url(wa-hero-bg.webp) center/cover no-repeat}
+.fun .lap{width:70%;filter:drop-shadow(0 28px 34px rgba(42,38,62,.45))}
+@media (max-width:640px){.wa-hero .lap-stage.fun{aspect-ratio:4/3}.fun .lap{width:84%}}
 </style>
 </head>
 <body>
@@ -337,7 +330,7 @@ a{color:inherit}
 
 <div class="wa-back"><a class="back" href="index.html#work">Back to all work</a></div>
 <figure class="wide wa-hero fade-up">
-  <div class="lap-stage fun"><span class="blob b1"></span><span class="blob b2"></span><span class="blob b3"></span><span class="blob b4"></span><span class="blob b5"></span><span class="blob b6"></span><span class="blob b7"></span><div class="lap"><div class="bezel"><div class="screen"><img src="wa-hero.webp" width="1600" height="873" alt="The Web Art home page, with the headline Where design meets technology, a Start the course button, and cards for The Course, Web Design Studio, and Component Lab."></div></div><div class="base"></div></div></div>
+  <div class="lap-stage fun"><div class="lap"><div class="bezel"><div class="screen"><img src="wa-hero.webp" width="1600" height="873" alt="The Web Art home page, with the headline Where design meets technology, a Start the course button, and cards for The Course, Web Design Studio, and Component Lab."></div></div><div class="base"></div></div></div>
 </figure>
 
 <div class="wa-head">
