@@ -359,7 +359,7 @@ a{color:inherit}
   <p class="eyebrow fade-up d1">Oracle · 2024–2026 · Product Management</p>
   <h1 class="fade-up d1">Conversational AI at Oracle</h1>
   <nav class="jump fade-up d2" aria-label="On this page">
-    <a href="#overview">Overview</a><a href="#problem">Problem</a><a href="#built">The experience</a><a href="#ownership">Ownership</a><a href="#outcome">Outcome</a>
+    <a href="#overview">Overview</a><a href="#problem">Problem</a><a href="#built">The experience</a><a href="#decisions">Decisions</a><a href="#ownership">Ownership</a><a href="#outcome">Outcome</a>
   </nav>
 </div>
 
@@ -417,6 +417,18 @@ a{color:inherit}
     <div class="lap-stage"><div class="lap"><div class="bezel"><div class="screen"><video class="wa-v" muted loop playsinline preload="none" width="1600" height="1000" poster="convai2-prd.webp" aria-label="Scrolling the Agent Studio Motion Confluence page: overview, problem, goals, success metrics, scope by epic, and the motion spec."><source src="convai2-prd.mp4" type="video/mp4"><source src="convai2-prd.webm" type="video/webm"></video></div></div><div class="base"></div></div></div>
   </figure>
   <!-- TO STRENGTHEN: name the specific moments you designed for, and how you scoped 28 animations out of a longer wish list. -->
+
+<section class="sec" id="decisions">
+  <p class="kicker">Decisions and tradeoffs</p>
+  <h2>What I chose, and what I gave up</h2>
+  <div class="cards">
+    <div class="card"><p class="n">01</p><h3>Reuse the listening ring instead of adding a spinner</h3><p>A separate loading spinner was the obvious option. Speeding up the ring users already knew kept one signal for the assistant's state and one less element to build.</p></div>
+    <div class="card"><p class="n">02</p><h3>Motion follows state, not a timer</h3><p>Fixed timings were simpler to build, but they told users the agent was done before it was. Tying motion to the real response state took more engineering work.</p></div>
+    <div class="card"><p class="n">03</p><h3>User input always interrupts motion</h3><p>Letting animations finish looked smoother, but typing while a chip animated could overwrite what the user wrote. Their input wins.</p></div>
+    <div class="card"><p class="n">04</p><h3>Reduced motion ships with beta</h3><p>Treating it as a follow-up would have saved time before launch. I made it a beta requirement instead, since it affects who can use the product at all.</p></div>
+  </div>
+  <p style="margin-top:1.5rem">I also built on the motion system I already owned rather than inventing new patterns, which kept the app builder consistent with the rest of Oracle's products.</p>
+</section>
 
 <section class="sec" id="ownership">
   <p class="kicker">Self-starter</p>
