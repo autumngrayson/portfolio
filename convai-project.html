@@ -422,12 +422,9 @@ a{color:inherit}
   <p class="kicker">Decisions and tradeoffs</p>
   <h2>What I chose, and what I gave up</h2>
   <div class="cards">
-    <div class="card"><p class="n">01</p><h3>Reuse the listening ring instead of adding a spinner</h3><p>A separate loading spinner was the obvious option. Speeding up the ring users already knew kept one signal for the assistant's state and one less element to build.</p></div>
-    <div class="card"><p class="n">02</p><h3>Motion follows state, not a timer</h3><p>Fixed timings were simpler to build, but they told users the agent was done before it was. Tying motion to the real response state took more engineering work.</p></div>
-    <div class="card"><p class="n">03</p><h3>User input always interrupts motion</h3><p>Letting animations finish looked smoother, but typing while a chip animated could overwrite what the user wrote. Their input wins.</p></div>
-    <div class="card"><p class="n">04</p><h3>Reduced motion ships with beta</h3><p>Treating it as a follow-up would have saved time before launch. I made it a beta requirement instead, since it affects who can use the product at all.</p></div>
+    <div class="card"><p class="n">01</p><h3>User input always interrupts motion</h3><p>Letting animations finish looked smoother, but typing while a chip animated could overwrite what the user wrote. Their input wins.</p></div>
+    <div class="card"><p class="n">02</p><h3>Reduced motion ships with beta</h3><p>Treating it as a follow-up would have saved time before launch. I made it a beta requirement instead, since it affects who can use the product at all.</p></div>
   </div>
-  <p style="margin-top:1.5rem">I also built on the motion system I already owned rather than inventing new patterns, which kept the app builder consistent with the rest of Oracle's products.</p>
 </section>
 
 <section class="sec" id="ownership">

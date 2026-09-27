@@ -355,7 +355,7 @@ a{color:inherit}
   <p class="eyebrow fade-up d1">Oracle · 2024–2026 · Product Management</p>
   <h1 class="fade-up d1">Standardizing the motion design system at Oracle</h1>
   <nav class="jump fade-up d2" aria-label="On this page">
-    <a href="#overview">Overview</a><a href="#problem">Problem</a><a href="#built">The system</a><a href="#challenges">Challenges</a><a href="#results">Results</a>
+    <a href="#overview">Overview</a><a href="#problem">Problem</a><a href="#built">The system</a><a href="#decisions">Decisions</a><a href="#challenges">Challenges</a><a href="#results">Results</a>
   </nav>
 </div>
 
@@ -422,6 +422,15 @@ a{color:inherit}
     <div class="lap-stage"><div class="lap"><div class="bezel"><div class="screen"><video class="wa-v" muted loop playsinline preload="none" width="1600" height="1000" poster="tempo2-code.webp" aria-label="Scrolling through the Tempo motion tokens file: easing curves, durations, and component mappings."><source src="tempo2-code.mp4" type="video/mp4"><source src="tempo2-code.webm" type="video/webm"></video></div></div><div class="base"></div></div></div>
   </figure>
   <figure class="wide flat-shot"><div class="frame table-frame"><img src="tempo2-table.webp" width="2080" height="746" loading="lazy" alt="The component mapping table, listing the easing and duration each component uses, such as dialog enter: emphasized-decelerate, medium4, 400ms."></div><figcaption>The component mapping teams checked during handoff and design review</figcaption></figure>
+
+<section class="sec" id="decisions">
+  <p class="kicker">Decisions and tradeoffs</p>
+  <h2>Making adoption the default</h2>
+  <div class="cards">
+    <div class="card"><p class="n">01</p><h3>Built in, not opt in</h3><p>Asking 20+ teams to adopt a new system one by one would have been slow and uneven. I baked the motion tokens into the component library and motion specs, so teams got them automatically just by using the components they already used.</p></div>
+    <div class="card"><p class="n">02</p><h3>Pilot with the builders first</h3><p>Before rolling out widely, we piloted with the team that helped build the system. They caught problems early and gave other teams a working example to follow.</p></div>
+  </div>
+</section>
 
 <section class="sec" id="challenges">
   <p class="kicker">Challenges</p>
